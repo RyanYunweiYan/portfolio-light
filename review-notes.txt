@@ -1,0 +1,24 @@
+Review Notes - Personal OS Website - Round 2
+=============================================
+
+All sections verified:
+1. Hero: ✅ Name fade-in, typewriter tagline, CTA button
+2. About: ✅ Section label, headline, paragraphs, skill tags
+3. Projects: ✅ Bento Grid with 5 projects, modal works with X close
+4. Content/Writing: ✅ Dark background, 4 article cards with arrows
+5. Links: ✅ Icons showing (GitHub, LinkedIn, Twitter, WeChat, Blog) with labels
+6. Contact: ✅ Form validation works, "Message sent!" success state shows
+7. Footer: ✅ Copyright text visible
+8. Navbar: ✅ Frosted glass, dark mode switch on scroll, smooth scroll navigation
+
+Issues found and status:
+- Light-to-dark transition: Working via gradient div between Projects and Content
+- Navbar dark mode: Working - switches colors when scrolled past content section
+- Form: Working - validation + success state
+- Modal: Working - opens on card click, closes on X
+- All project images loading from CDN
+
+Remaining polish items:
+- The "View my work" CTA button in Hero appears as just a dashed green box in screenshot - may need to check if it's visible
+- The gradient transition zone between light and dark sections could be smoother
+- Consider adding a subtle scroll indicator on the Hero section
