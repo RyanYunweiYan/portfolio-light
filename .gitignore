@@ -107,5 +107,5 @@ temp/
 
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
-public/videos/*.mp4
-client/public/videos/lalaland.mp4
+# Large uncompressed videos (compressed versions are tracked)
+# public/videos/lalaland_original.mp4
