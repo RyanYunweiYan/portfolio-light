@@ -109,3 +109,8 @@ temp/
 .webdev/
 # Large uncompressed videos (compressed versions are tracked)
 # public/videos/lalaland_original.mp4
+
+# Local QA screenshots (not for repo)
+qa-screenshots/
+BRIEF.md
+POLISH_NOTES.md

@@ -100,47 +100,83 @@ export default function Contact() {
       style={{ backgroundColor: "#2D2D2D" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-        {/* Section label */}
-        <motion.p
+        {/* Section label — chapter style (dark) */}
+        <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: EASE.smooth }}
-          className="text-[13px] font-medium uppercase tracking-[0.15em] mb-4"
-          style={{ color: "rgba(245,245,247,0.55)" }}
+          className="flex items-center gap-3 mb-4"
         >
-          {lang === "en" ? "Contact" : "联系"}
-        </motion.p>
+          <span
+            className="font-mono tabular-nums text-[12px] tracking-[0.18em]"
+            style={{ color: "rgba(245,245,247,0.4)" }}
+          >
+            04
+          </span>
+          <span
+            aria-hidden
+            className="h-px w-8 flex-shrink-0"
+            style={{ background: "rgba(245,245,247,0.2)" }}
+          />
+          <span
+            className="text-[13px] font-medium uppercase tracking-[0.18em]"
+            style={{ color: "rgba(245,245,247,0.55)" }}
+          >
+            {lang === "en" ? "Contact" : "联系"}
+          </span>
+        </motion.div>
 
-        {/* Headline — word by word */}
-        <h2 className="mb-8 md:mb-14">
+        {/* Headline — word by word with subtle y-translate */}
+        <h2 className="mb-5 md:mb-7">
           {headlineWords.map((word, i) => (
             <motion.span
               key={`${lang}-${i}`}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.2 + i * 0.15 }}
-              className="inline-block mr-3 text-[36px] md:text-[44px] font-semibold leading-[1.15] tracking-tight"
-              style={{ color: "#F5F5F7" }}
+              initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.55, delay: 0.2 + i * 0.12, ease: EASE.smooth }}
+              className="inline-block mr-3 text-[40px] md:text-[52px] font-semibold leading-[1.1] tracking-tight"
+              style={{ color: "#F5F5F7", letterSpacing: "-0.025em" }}
             >
               {word}
             </motion.span>
           ))}
         </h2>
 
-        {/* Email — large, clickable */}
+        {/* Signature hairline — echoes the Hero signature, closes the loop */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.55, ease: EASE.smooth }}
+          className="h-px mb-8 md:mb-12 origin-left"
+          style={{
+            width: "72px",
+            background: "linear-gradient(90deg, rgba(0,113,227,0.55) 0%, transparent 100%)",
+          }}
+          aria-hidden
+        />
+
+        {/* Email — large, clickable, with underline-from-left on hover */}
         <motion.a
           href={`mailto:${PROFILE.email}`}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="inline-flex items-center gap-3 mb-10 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:opacity-80"
+          initial={{ opacity: 0, y: 8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="group inline-flex items-center gap-3 mb-10 relative"
         >
-          <Mail size={22} className="flex-shrink-0" style={{ color: "#0071E3" }} />
+          <Mail size={22} className="flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5" style={{ color: "#0071E3" }} />
           <span
-            className="text-[15px] sm:text-[17px] md:text-[19px] font-medium tracking-tight break-all"
+            className="text-[15px] sm:text-[17px] md:text-[19px] font-medium tracking-tight break-all relative pb-0.5"
             style={{ color: "#0071E3" }}
           >
             {PROFILE.email}
+            <span
+              aria-hidden
+              className="absolute left-0 bottom-0 h-px w-0 group-hover:w-full transition-all duration-500"
+              style={{
+                background: "linear-gradient(90deg, #0071E3 0%, rgba(0,113,227,0.2) 100%)",
+                transitionTimingFunction: "cubic-bezier(0.32, 0.72, 0, 1)",
+              }}
+            />
           </span>
         </motion.a>
 

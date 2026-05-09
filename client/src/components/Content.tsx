@@ -256,23 +256,38 @@ export default function ContentSection() {
         style={{ backgroundColor: "#2D2D2D" }}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-          {/* Section label */}
-          <motion.p
+          {/* Section label — chapter style (dark) */}
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, ease: EASE.smooth }}
-            className="text-[13px] font-medium uppercase tracking-[0.15em] mb-4"
-            style={{ color: "rgba(245,245,247,0.55)" }}
+            className="flex items-center gap-3 mb-4"
           >
-            {lang === "en" ? "Creative" : "AI 创作"}
-          </motion.p>
+            <span
+              className="font-mono tabular-nums text-[12px] tracking-[0.18em]"
+              style={{ color: "rgba(245,245,247,0.4)" }}
+            >
+              03
+            </span>
+            <span
+              aria-hidden
+              className="h-px w-8 flex-shrink-0"
+              style={{ background: "rgba(245,245,247,0.2)" }}
+            />
+            <span
+              className="text-[13px] font-medium uppercase tracking-[0.18em]"
+              style={{ color: "rgba(245,245,247,0.55)" }}
+            >
+              {lang === "en" ? "Creative" : "AI 创作"}
+            </span>
+          </motion.div>
 
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[36px] md:text-[44px] font-semibold leading-[1.15] tracking-tight mb-8 md:mb-14"
-            style={{ color: "#F5F5F7" }}
+            className="text-[40px] md:text-[52px] font-semibold leading-[1.1] tracking-tight mb-8 md:mb-14"
+            style={{ color: "#F5F5F7", letterSpacing: "-0.025em" }}
           >
             {lang === "en" ? "AI Creative Works" : "AI 创意作品"}
           </motion.h2>
