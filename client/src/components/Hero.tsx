@@ -12,11 +12,44 @@
 import { useEffect, useState, useRef } from "react";
 import { useScrollY } from "@/hooks/useScrollAnimation";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Mail, Sparkles } from "lucide-react";
 import { PROFILE, METRICS } from "@/data/siteData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
 
 const nameWords = PROFILE.name.split(" ");
+
+function SignatureFrame({ lang, t }: { lang: string; t: ReturnType<typeof useLanguage>["t"] }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.7, delay: 0.95, ease: EASE.smooth }}
+      className="relative mx-auto mb-8 w-full max-w-[760px] px-4"
+    >
+      <div className="absolute left-1/2 top-1/2 h-[170px] w-[min(92vw,760px)] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-black/[0.06]" />
+      <div className="absolute left-1/2 top-1/2 h-[86px] w-[min(70vw,480px)] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-[#0071E3]/15" />
+      <div className="relative grid grid-cols-2 gap-2 rounded-[8px] border border-black/[0.07] bg-white/65 p-2 shadow-[0_18px_70px_rgba(0,0,0,0.06)] backdrop-blur-xl sm:grid-cols-4">
+        {METRICS.map((metric, i) => (
+          <div
+            key={i}
+            className="min-h-[82px] rounded-[6px] border border-black/[0.05] bg-white/75 px-3 py-3 text-left"
+          >
+            <span className="block text-[22px] font-semibold leading-none text-[#1D1D1F] sm:text-[24px]">
+              {metric.value}
+            </span>
+            <span className="mt-2 block text-[11px] font-medium leading-[1.25] text-black/45 sm:text-[12px]">
+              {t(metric.label)}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/35">
+        {lang === "en" ? "AI product signal, not a resume page" : "不是简历页，是 AI 产品信号"}
+      </p>
+    </motion.div>
+  );
+}
 
 export default function Hero() {
   const scrollY = useScrollY();
@@ -100,11 +133,29 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,113,227,0.03) 0%, #FFFFFF 70%)", minHeight: "100dvh" }}
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 54%, #FFFFFF 100%)",
+        minHeight: "100dvh",
+      }}
     >
       <div
-        className="text-center px-6 max-w-[900px] mx-auto"
+        className="pointer-events-none absolute inset-0 opacity-[0.48]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.035) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+          maskImage: "radial-gradient(circle at 50% 44%, black 0%, transparent 68%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute left-1/2 top-[45%] h-[520px] w-[min(86vw,980px)] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-black/[0.055]"
+      />
+      <div className="pointer-events-none absolute left-1/2 top-[45%] h-[340px] w-[min(72vw,720px)] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-[#0071E3]/10" />
+
+      <div
+        className="relative z-10 mx-auto max-w-[980px] px-6 text-center"
         style={{
           transform: `translateY(${scrollY * -0.1}px)`,
           opacity: Math.max(0, 1 - scrollY / (window.innerHeight * 0.7)),
@@ -115,8 +166,18 @@ export default function Hero() {
         <AnimatePresence>
           {showContent && (
             <>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.25, ease: EASE.smooth }}
+                className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/75 px-3.5 py-2 text-[12px] font-semibold text-black/55 shadow-[0_10px_35px_rgba(0,0,0,0.04)] backdrop-blur-xl"
+              >
+                <Sparkles size={14} className="text-[#0071E3]" />
+                <span>{lang === "en" ? "AI Product Manager / Builder" : "AI 产品经理 / Builder"}</span>
+              </motion.div>
+
               {/* Name — word by word */}
-              <h1 className={lang === "zh" ? "mb-2" : "mb-4"}>
+              <h1 className={lang === "zh" ? "mb-3" : "mb-4"}>
                 {nameWords.map((word, i) => (
                   <motion.span
                     key={word}
@@ -129,9 +190,9 @@ export default function Hero() {
                     }}
                     className="inline-block mr-3 sm:mr-5 last:mr-0"
                     style={{
-                      fontSize: lang === "zh" ? "clamp(40px, 8vw, 72px)" : "clamp(48px, 10vw, 88px)",
-                      fontWeight: 800,
-                      letterSpacing: "-0.03em",
+                      fontSize: lang === "zh" ? "clamp(40px, 8vw, 76px)" : "clamp(54px, 10vw, 104px)",
+                      fontWeight: 760,
+                      letterSpacing: "0em",
                       lineHeight: 1.05,
                       color: "#1D1D1F",
                     }}
@@ -166,10 +227,10 @@ export default function Hero() {
               </motion.p>
 
               {/* Secondary tagline — typewriter cycling (decorative, not gating anything) */}
-              <div className="min-h-10 flex items-center justify-center mb-6 px-2">
+              <div className="mb-5 flex min-h-10 items-center justify-center px-2">
                 <p
-                  className="text-[15px] md:text-[20px] font-normal tracking-wide"
-                  style={{ color: "rgba(29,29,31,0.50)" }}
+                  className="max-w-[720px] text-[15px] font-normal leading-[1.55] md:text-[20px]"
+                  style={{ color: "rgba(29,29,31,0.52)" }}
                 >
                   {typedText}
                   <span
@@ -184,30 +245,7 @@ export default function Hero() {
                 </p>
               </div>
 
-              {/* Key metrics strip — social proof above the fold */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.0, ease: EASE.smooth }}
-                className="flex flex-wrap justify-center gap-x-8 gap-y-3 sm:gap-x-10 md:gap-x-12 mb-8"
-              >
-                {METRICS.map((metric, i) => (
-                  <div key={i} className="text-center">
-                    <span
-                      className="text-[20px] sm:text-[24px] font-bold tracking-tight"
-                      style={{ color: "#1D1D1F" }}
-                    >
-                      {metric.value}
-                    </span>
-                    <span
-                      className="block text-[12px] sm:text-[13px] font-medium tracking-wide mt-0.5"
-                      style={{ color: "rgba(29,29,31,0.50)" }}
-                    >
-                      {t(metric.label)}
-                    </span>
-                  </div>
-                ))}
-              </motion.div>
+              <SignatureFrame lang={lang} t={t} />
 
               {/* CTA Buttons — appear on timed delay, NOT gated on typewriter */}
               <motion.div
@@ -218,7 +256,7 @@ export default function Hero() {
               >
                 <motion.a
                   href={`mailto:${PROFILE.email}`}
-                  className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-[15px] font-medium rounded-full"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium sm:px-8 sm:py-3.5"
                   style={{
                     backgroundColor: "#0071E3",
                     color: "#FFFFFF",
@@ -231,11 +269,12 @@ export default function Hero() {
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
+                  <Mail size={16} />
                   {lang === "en" ? "Get in Touch" : "联系我"}
                 </motion.a>
                 <motion.a
                   href="#projects"
-                  className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-[15px] font-medium rounded-full"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-medium sm:px-8 sm:py-3.5"
                   style={{
                     backgroundColor: "transparent",
                     color: "#0071E3",
@@ -250,6 +289,7 @@ export default function Hero() {
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
                   {lang === "en" ? "View my work" : "查看我的作品"}
+                  <ArrowRight size={16} />
                 </motion.a>
               </motion.div>
             </>

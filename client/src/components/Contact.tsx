@@ -6,7 +6,7 @@
  */
 import { motion } from "framer-motion";
 import { useInView } from "@/hooks/useScrollAnimation";
-import { Mail, Linkedin, Github, MessageCircle, Video } from "lucide-react";
+import { ArrowRight, Mail, Linkedin, Github, MessageCircle, Video } from "lucide-react";
 import { PROFILE, SOCIAL_LINKS } from "@/data/siteData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
@@ -57,7 +57,7 @@ function SocialIcon({
         />
       </div>
       <span
-        className="text-[12px] font-medium transition-colors duration-200"
+        className="min-w-[86px] text-center text-[12px] font-medium transition-colors duration-200"
         style={{ color: hovered ? "#F5F5F7" : "rgba(245,245,247,0.55)" }}
       >
         {link.platform}
@@ -70,14 +70,14 @@ function SocialIcon({
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={isInView ? { opacity: 1, scale: [0, 1.1, 1.0] } : {}}
+      initial={{ opacity: 0, y: 12 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.4,
-        delay: 0.8 + index * 0.1,
-        ease: EASE.bounce,
+        duration: 0.35,
+        delay: 0.35 + index * 0.08,
+        ease: EASE.smooth,
       }}
-      className="flex flex-col items-center gap-2 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+      className="flex w-[86px] flex-col items-center gap-2 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -96,9 +96,19 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-20 md:py-36"
-      style={{ backgroundColor: "#2D2D2D" }}
+      className="relative overflow-hidden py-20 md:py-36"
+      style={{ backgroundColor: "#242424" }}
     >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "linear-gradient(180deg, transparent 0%, black 28%, black 72%, transparent 100%)",
+        }}
+      />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[min(86vw,920px)] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/[0.07]" />
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Section label */}
         <motion.p
@@ -111,45 +121,64 @@ export default function Contact() {
           {lang === "en" ? "Contact" : "联系"}
         </motion.p>
 
-        {/* Headline — word by word */}
-        <h2 className="mb-8 md:mb-14">
-          {headlineWords.map((word, i) => (
-            <motion.span
-              key={`${lang}-${i}`}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.2 + i * 0.15 }}
-              className="inline-block mr-3 text-[36px] md:text-[44px] font-semibold leading-[1.15] tracking-tight"
-              style={{ color: "#F5F5F7" }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h2>
+        <div className="grid gap-10 md:grid-cols-[1fr_420px] md:items-end">
+          <div>
+            {/* Headline — word by word */}
+            <h2 className="mb-8 md:mb-12">
+              {headlineWords.map((word, i) => (
+                <motion.span
+                  key={`${lang}-${i}`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.45, delay: 0.2 + i * 0.15, ease: EASE.smooth }}
+                  className="inline-block mr-3 text-[42px] font-semibold leading-[1.08] md:text-[68px]"
+                  style={{ color: "#F5F5F7" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </h2>
 
-        {/* Email — large, clickable */}
-        <motion.a
-          href={`mailto:${PROFILE.email}`}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="inline-flex items-center gap-3 mb-10 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:opacity-80"
-        >
-          <Mail size={22} className="flex-shrink-0" style={{ color: "#0071E3" }} />
-          <span
-            className="text-[15px] sm:text-[17px] md:text-[19px] font-medium tracking-tight break-all"
-            style={{ color: "#0071E3" }}
+            {/* Email — large, clickable */}
+            <motion.a
+              href={`mailto:${PROFILE.email}`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.5, ease: EASE.smooth }}
+              className="group mb-10 inline-flex max-w-full items-center gap-3 rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-3 transition-all duration-300 hover:border-[#0071E3]/45 hover:bg-white/[0.09] sm:px-5"
+            >
+              <Mail size={20} className="flex-shrink-0" style={{ color: "#0071E3" }} />
+              <span
+                className="min-w-0 break-all text-[15px] font-medium sm:text-[17px] md:text-[19px]"
+                style={{ color: "#F5F5F7" }}
+              >
+                {PROFILE.email}
+              </span>
+              <ArrowRight size={18} className="hidden flex-shrink-0 text-[#0071E3] transition-transform duration-300 group-hover:translate-x-1 sm:block" />
+            </motion.a>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.65, ease: EASE.smooth }}
+            className="rounded-[8px] border border-white/[0.1] bg-white/[0.055] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-6"
           >
-            {PROFILE.email}
-          </span>
-        </motion.a>
+            <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/42">
+              {lang === "en" ? "Current signal" : "当前信号"}
+            </p>
+            <p className="text-[16px] leading-[1.7] text-white/72 md:text-[17px]">
+              {t(PROFILE.availability)}
+            </p>
+          </motion.div>
+        </div>
 
         {/* Social links — icon row */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="flex flex-wrap gap-4 sm:gap-5 md:gap-6 mb-12"
+          className="mb-12 flex flex-wrap gap-4 sm:gap-5 md:gap-6"
         >
           {SOCIAL_LINKS.map((link, i) => (
             <SocialIcon
@@ -160,17 +189,6 @@ export default function Contact() {
             />
           ))}
         </motion.div>
-
-        {/* Availability */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 1.2 }}
-          className="text-[15px] font-normal leading-[1.6]"
-          style={{ color: "rgba(245,245,247,0.55)" }}
-        >
-          {t(PROFILE.availability)}
-        </motion.p>
       </div>
     </section>
   );

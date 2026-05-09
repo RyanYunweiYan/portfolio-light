@@ -9,7 +9,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "@/hooks/useScrollAnimation";
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import { PROJECTS } from "@/data/siteData";
 import { EASE } from "@/const";
 import type { Project } from "@/data/siteData";
@@ -54,24 +54,26 @@ function ProjectCard({
         ease: EASE.smooth,
       }}
       onClick={onClick}
-      className={`group cursor-pointer rounded-2xl overflow-hidden transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.1),0_10px_24px_rgba(0,0,0,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.04)] hover:border-[rgba(0,113,227,0.2)] active:scale-[0.98] ${
+      className={`group relative cursor-pointer overflow-hidden rounded-[8px] border border-black/[0.06] bg-white transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:border-[#0071E3]/25 hover:shadow-[0_28px_80px_rgba(0,0,0,0.12),0_10px_24px_rgba(0,113,227,0.08)] active:scale-[0.98] ${
         project.size === "large"
           ? "md:col-span-2"
           : project.size === "medium"
           ? "md:col-span-1 md:row-span-1"
           : "md:col-span-1 md:row-span-1"
       }`}
-      style={{
-        backgroundColor: "#FFFFFF",
-      }}
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[3px] origin-left scale-x-0 bg-[#0071E3] transition-transform duration-300 group-hover:scale-x-100" />
+      <div className="pointer-events-none absolute right-4 top-4 z-10 rounded-full border border-white/70 bg-white/75 px-2.5 py-1 text-[11px] font-semibold text-black/45 shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
+        {String(index + 1).padStart(2, "0")}
+      </div>
+
       {/* Thumbnail / Gradient placeholder */}
       <div className="overflow-hidden aspect-[4/3]" style={{ backgroundColor: "#F5F5F7" }}>
         {project.coverImage ? (
           <motion.img
             src={project.coverImage}
             alt={t(project.title)}
-            className={`w-full h-full transition-transform duration-200 group-hover:scale-[1.03] ${project.size === "large" ? "object-cover" : "object-contain"}`}
+            className={`h-full w-full transition-[filter,transform] duration-500 group-hover:scale-[1.035] group-hover:saturate-[1.04] ${project.size === "large" ? "object-cover" : "object-contain"}`}
             initial={{ filter: "blur(10px)" }}
             animate={isInView ? { filter: "blur(0px)" } : {}}
             transition={{ duration: 0.8, delay: 0.2 + index * 0.12 }}
@@ -96,9 +98,9 @@ function ProjectCard({
 
       {/* Card content */}
       <div className="p-5 md:p-6">
-        <div className="flex items-center gap-3 mb-2">
+        <div className="mb-3 flex flex-wrap items-center gap-2.5">
           <span
-            className="text-[12px] font-medium uppercase tracking-[0.1em]"
+            className="text-[11px] font-semibold uppercase tracking-[0.12em]"
             style={{ color: "#0071E3" }}
           >
             {project.tags[0]}
@@ -128,7 +130,7 @@ function ProjectCard({
           {t(project.title)}
         </h3>
         <p
-          className="text-[14px] md:text-[15px] font-normal leading-[1.6] line-clamp-3"
+          className="line-clamp-3 text-[14px] font-normal leading-[1.65] md:text-[15px]"
           style={{ color: "rgba(29,29,31,0.6)" }}
         >
           {t(project.description)}
@@ -139,11 +141,11 @@ function ProjectCard({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 mt-3 text-[13px] font-medium transition-all duration-200 hover:gap-2.5"
+            className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold transition-all duration-200 hover:gap-2.5"
             style={{ color: "#0071E3" }}
           >
             {lang === "en" ? "View Live" : "在线查看"}
-            <span className="text-[11px]">↗</span>
+            <ArrowUpRight size={14} />
           </a>
         )}
       </div>
@@ -323,9 +325,10 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative py-20 md:py-36"
-      style={{ backgroundColor: "#FFFFFF" }}
+      className="relative overflow-hidden py-20 md:py-36"
+      style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F7F8FA 46%, #FFFFFF 100%)" }}
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,113,227,0.06),transparent)]" />
       {/* Apple-style thin line separator */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[1px]" style={{ background: "rgba(29,29,31,0.15)" }} />
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
@@ -340,18 +343,30 @@ export default function Projects() {
           {lang === "en" ? "Projects" : "作品集"}
         </motion.p>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[36px] md:text-[44px] font-semibold leading-[1.15] tracking-tight mb-8 md:mb-14"
-          style={{ color: "#1D1D1F" }}
-        >
-          {lang === "en" ? "Selected work" : "精选作品"}
-        </motion.h2>
+        <div className="mb-8 grid gap-4 md:mb-14 md:grid-cols-[1fr_360px] md:items-end">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[36px] font-semibold leading-[1.15] md:text-[48px]"
+            style={{ color: "#1D1D1F" }}
+          >
+            {lang === "en" ? "Selected work with shipped signal." : "有交付信号的精选作品。"}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, delay: 0.18 }}
+            className="text-[15px] leading-[1.7] text-black/50 md:text-[16px]"
+          >
+            {lang === "en"
+              ? "The emphasis is not volume. It is whether AI moved from idea to interface, user, and measurable outcome."
+              : "重点不是作品数量，而是 AI 是否从想法走到界面、用户和可验证结果。"}
+          </motion.p>
+        </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 auto-rows-auto">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
           {PROJECTS.map((project, i) => (
             <ProjectCard
               key={project.id}
