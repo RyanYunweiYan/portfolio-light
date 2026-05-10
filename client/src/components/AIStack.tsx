@@ -79,37 +79,36 @@ export default function AIStack() {
     <section
       id="stack"
       ref={ref}
-      className="py-14 md:py-24"
+      className="py-10 md:py-16"
       style={{ backgroundColor: "#2D2D2D" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-        {/* Section label */}
-        <motion.p
+        {/* Section label — sub-section style (no chapter number, hairline + label) */}
+        <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: EASE.smooth }}
-          className="text-[13px] font-medium uppercase tracking-[0.15em] mb-4"
-          style={{ color: "rgba(245,245,247,0.55)" }}
+          className="flex items-center gap-3 md:gap-4 mb-3"
         >
-          {lang === "en" ? "Stack" : "工具栈"}
-        </motion.p>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[36px] md:text-[44px] font-semibold leading-[1.15] tracking-tight mb-3"
-          style={{ color: "#F5F5F7" }}
-        >
-          AI Stack
-        </motion.h2>
+          <span
+            aria-hidden
+            className="h-px w-8 md:w-10 flex-shrink-0"
+            style={{ background: "rgba(245,245,247,0.3)" }}
+          />
+          <span
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[16px] md:text-[20px]" : "tracking-[0.05em] text-[18px] md:text-[22px]"}`}
+            style={{ color: "rgba(245,245,247,0.62)" }}
+          >
+            {lang === "en" ? "AI Stack" : "AI 工具栈"}
+          </span>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-[17px] md:text-[19px] font-normal leading-[1.6] mb-8 md:mb-14"
-          style={{ color: "rgba(245,245,247,0.58)" }}
+          className="text-[14px] md:text-[15px] font-normal leading-[1.6] mb-8 md:mb-10 ml-[44px] md:ml-[56px]"
+          style={{ color: "rgba(245,245,247,0.45)" }}
         >
           {lang === "en" ? "$400+/month personal investment" : "每月 $400+ 个人投入"}
         </motion.p>

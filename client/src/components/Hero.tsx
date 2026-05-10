@@ -264,25 +264,6 @@ export default function Hero() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Subtle scroll indicator */}
-      <motion.button
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer flex items-center justify-center w-11 h-11"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 2.0, duration: 0.6 }}
-        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        whileHover={{ opacity: 0.7, scale: 1.2 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label={lang === "en" ? "Scroll down" : "向下滚动"}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-8"
-          style={{ backgroundColor: "#1D1D1F" }}
-        />
-      </motion.button>
     </section>
   );
 }
