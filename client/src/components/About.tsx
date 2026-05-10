@@ -153,22 +153,22 @@ export default function About() {
           initial={{ opacity: 0, x: -40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: EASE.smooth }}
-          className="flex items-center gap-3 mb-4"
+          className="flex items-baseline gap-3 md:gap-4 mb-6 md:mb-8"
         >
           <span
-            className="font-mono tabular-nums text-[12px] tracking-[0.18em]"
-            style={{ color: "rgba(29,29,31,0.4)" }}
+            className="font-mono tabular-nums text-[28px] md:text-[36px] leading-none"
+            style={{ color: "rgba(29,29,31,0.32)", letterSpacing: "-0.02em" }}
           >
             01
           </span>
           <span
             aria-hidden
-            className="h-px w-8 flex-shrink-0"
-            style={{ background: "rgba(29,29,31,0.2)" }}
+            className="h-px w-10 md:w-14 flex-shrink-0 self-center"
+            style={{ background: "rgba(29,29,31,0.22)" }}
           />
           <span
-            className="text-[13px] font-medium uppercase tracking-[0.18em]"
-            style={{ color: "rgba(29,29,31,0.55)" }}
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.12em] text-[20px] md:text-[26px]" : "tracking-[0.05em] text-[22px] md:text-[28px]"}`}
+            style={{ color: "rgba(29,29,31,0.65)" }}
           >
             {lang === "en" ? "About" : "关于"}
           </span>

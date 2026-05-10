@@ -154,25 +154,12 @@ export default function Hero() {
                 </motion.p>
               )}
 
-              {/* Signature line — subtle hairline that grows in, the visual signature under the name */}
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.85, ease: EASE.smooth }}
-                className="mx-auto h-px mb-5 mt-3 origin-center"
-                style={{
-                  width: "96px",
-                  background: "linear-gradient(90deg, transparent 0%, rgba(0,113,227,0.75) 50%, transparent 100%)",
-                }}
-                aria-hidden
-              />
-
               {/* Static title */}
               <motion.p
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.95, ease: EASE.smooth }}
-                className={`font-semibold tracking-tight ${lang === "zh" ? "text-[18px] md:text-[22px] mb-4" : "text-[22px] md:text-[28px] mb-3"}`}
+                transition={{ duration: 0.5, delay: 0.7, ease: EASE.smooth }}
+                className={`font-semibold tracking-tight ${lang === "zh" ? "text-[18px] md:text-[22px] mb-4 mt-2" : "text-[22px] md:text-[28px] mb-3"}`}
                 style={{ color: "#1D1D1F" }}
               >
                 {t(PROFILE.title)}
@@ -202,16 +189,16 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.0, ease: EASE.smooth }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-x-2 sm:gap-x-4 md:gap-x-6 gap-y-4 max-w-[760px] mx-auto mb-8"
+                className="grid grid-cols-2 md:grid-cols-4 gap-x-1 md:gap-x-2 gap-y-5 max-w-[920px] mx-auto mb-8"
               >
                 {METRICS.map((metric, i) => (
                   <div
                     key={i}
-                    className={`text-center px-2 sm:px-3 md:px-4 py-0.5 ${i > 0 ? "sm:border-l" : ""}`}
+                    className={`text-center px-2 md:px-3 py-0.5 ${i > 0 ? "md:border-l" : ""} ${i === 2 ? "sm:border-l md:border-l" : ""}`}
                     style={{ borderColor: "rgba(29,29,31,0.10)" }}
                   >
                     <span
-                      className="text-[20px] sm:text-[22px] md:text-[24px] font-semibold tracking-tight"
+                      className="block text-[22px] sm:text-[24px] md:text-[26px] font-semibold tracking-tight"
                       style={{
                         color: "#1D1D1F",
                         fontVariantNumeric: "tabular-nums",
@@ -221,11 +208,8 @@ export default function Hero() {
                       {metric.value}
                     </span>
                     <span
-                      className="block text-[10.5px] sm:text-[11px] md:text-[12px] font-medium uppercase tracking-[0.08em] mt-1 leading-[1.4]"
-                      style={{
-                        color: "rgba(29,29,31,0.45)",
-                        minHeight: "2.8em",
-                      }}
+                      className="block text-[10px] md:text-[11px] font-medium uppercase tracking-[0.05em] mt-1.5 whitespace-nowrap"
+                      style={{ color: "rgba(29,29,31,0.45)" }}
                     >
                       {t(metric.label)}
                     </span>

@@ -243,7 +243,7 @@ export default function ContentSection() {
     <>
       {/* Gradient transition zone — sits between Projects and Content */}
       <div
-        className="h-[160px]"
+        className="h-[60px]"
         style={{
           background: "linear-gradient(to bottom, #FFFFFF 0%, #2D2D2D 100%)",
         }}
@@ -256,41 +256,31 @@ export default function ContentSection() {
         style={{ backgroundColor: "#2D2D2D" }}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-          {/* Section label — chapter style (dark) */}
+          {/* Section label — chapter style (dark, acts as section heading) */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, ease: EASE.smooth }}
-            className="flex items-center gap-3 mb-4"
+            className="flex items-baseline gap-3 md:gap-4 mb-8 md:mb-14"
           >
             <span
-              className="font-mono tabular-nums text-[12px] tracking-[0.18em]"
-              style={{ color: "rgba(245,245,247,0.4)" }}
+              className="font-mono tabular-nums text-[28px] md:text-[36px] leading-none"
+              style={{ color: "rgba(245,245,247,0.32)", letterSpacing: "-0.02em" }}
             >
               03
             </span>
             <span
               aria-hidden
-              className="h-px w-8 flex-shrink-0"
-              style={{ background: "rgba(245,245,247,0.2)" }}
+              className="h-px w-10 md:w-14 flex-shrink-0 self-center"
+              style={{ background: "rgba(245,245,247,0.22)" }}
             />
             <span
-              className="text-[13px] font-medium uppercase tracking-[0.18em]"
-              style={{ color: "rgba(245,245,247,0.55)" }}
+              className={`font-medium ${lang === "en" ? "uppercase tracking-[0.12em] text-[20px] md:text-[26px]" : "tracking-[0.05em] text-[22px] md:text-[28px]"}`}
+              style={{ color: "rgba(245,245,247,0.7)" }}
             >
               {lang === "en" ? "Creative" : "AI 创作"}
             </span>
           </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[40px] md:text-[52px] font-semibold leading-[1.1] tracking-tight mb-8 md:mb-14"
-            style={{ color: "#F5F5F7", letterSpacing: "-0.025em" }}
-          >
-            {lang === "en" ? "AI Creative Works" : "AI 创意作品"}
-          </motion.h2>
 
           {/* Sub-sections */}
           <SubSection title={subSectionLabels.videos} works={videos} isInView={isInView} startIndex={0} />

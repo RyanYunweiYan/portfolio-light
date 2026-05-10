@@ -22,8 +22,8 @@ export default function ScrollBackground() {
       rafId = requestAnimationFrame(() => {
         if (!cachedCreativeTop) return;
 
-        const gradientStart = cachedCreativeTop - 200 - window.innerHeight * 0.5;
-        const gradientEnd = cachedCreativeTop - 200;
+        const gradientStart = cachedCreativeTop - 100;
+        const gradientEnd = cachedCreativeTop - 20;
         const scrollY = window.scrollY;
 
         if (scrollY < gradientStart) {

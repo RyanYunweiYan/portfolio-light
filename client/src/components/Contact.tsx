@@ -90,8 +90,6 @@ export default function Contact() {
   const { ref, isInView } = useInView({ threshold: 0.15 });
   const { lang, t } = useLanguage();
 
-  const headlineWords = lang === "en" ? ["Let's", "connect."] : ["保持联系。"];
-
   return (
     <section
       id="contact"
@@ -100,60 +98,31 @@ export default function Contact() {
       style={{ backgroundColor: "#2D2D2D" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-        {/* Section label — chapter style (dark) */}
+        {/* Section label — chapter style (dark, acts as section heading) */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: EASE.smooth }}
-          className="flex items-center gap-3 mb-4"
+          className="flex items-baseline gap-3 md:gap-4 mb-8 md:mb-14"
         >
           <span
-            className="font-mono tabular-nums text-[12px] tracking-[0.18em]"
-            style={{ color: "rgba(245,245,247,0.4)" }}
+            className="font-mono tabular-nums text-[28px] md:text-[36px] leading-none"
+            style={{ color: "rgba(245,245,247,0.32)", letterSpacing: "-0.02em" }}
           >
             04
           </span>
           <span
             aria-hidden
-            className="h-px w-8 flex-shrink-0"
-            style={{ background: "rgba(245,245,247,0.2)" }}
+            className="h-px w-10 md:w-14 flex-shrink-0 self-center"
+            style={{ background: "rgba(245,245,247,0.22)" }}
           />
           <span
-            className="text-[13px] font-medium uppercase tracking-[0.18em]"
-            style={{ color: "rgba(245,245,247,0.55)" }}
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.12em] text-[20px] md:text-[26px]" : "tracking-[0.05em] text-[22px] md:text-[28px]"}`}
+            style={{ color: "rgba(245,245,247,0.7)" }}
           >
-            {lang === "en" ? "Contact" : "联系"}
+            {lang === "en" ? "Let's connect" : "保持联系"}
           </span>
         </motion.div>
-
-        {/* Headline — word by word with subtle y-translate */}
-        <h2 className="mb-5 md:mb-7">
-          {headlineWords.map((word, i) => (
-            <motion.span
-              key={`${lang}-${i}`}
-              initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.55, delay: 0.2 + i * 0.12, ease: EASE.smooth }}
-              className="inline-block mr-3 text-[40px] md:text-[52px] font-semibold leading-[1.1] tracking-tight"
-              style={{ color: "#F5F5F7", letterSpacing: "-0.025em" }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h2>
-
-        {/* Signature hairline — echoes the Hero signature, closes the loop */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.7, delay: 0.55, ease: EASE.smooth }}
-          className="h-px mb-8 md:mb-12 origin-left"
-          style={{
-            width: "72px",
-            background: "linear-gradient(90deg, rgba(0,113,227,0.55) 0%, transparent 100%)",
-          }}
-          aria-hidden
-        />
 
         {/* Email — large, clickable, with underline-from-left on hover */}
         <motion.a

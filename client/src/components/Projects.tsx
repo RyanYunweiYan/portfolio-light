@@ -329,41 +329,31 @@ export default function Projects() {
       {/* Apple-style thin line separator */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[1px]" style={{ background: "rgba(29,29,31,0.15)" }} />
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-        {/* Section label — chapter style */}
+        {/* Section label — chapter style (acts as the section heading) */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: EASE.smooth }}
-          className="flex items-center gap-3 mb-4"
+          className="flex items-baseline gap-3 md:gap-4 mb-8 md:mb-14"
         >
           <span
-            className="font-mono tabular-nums text-[12px] tracking-[0.18em]"
-            style={{ color: "rgba(29,29,31,0.4)" }}
+            className="font-mono tabular-nums text-[28px] md:text-[36px] leading-none"
+            style={{ color: "rgba(29,29,31,0.32)", letterSpacing: "-0.02em" }}
           >
             02
           </span>
           <span
             aria-hidden
-            className="h-px w-8 flex-shrink-0"
-            style={{ background: "rgba(29,29,31,0.2)" }}
+            className="h-px w-10 md:w-14 flex-shrink-0 self-center"
+            style={{ background: "rgba(29,29,31,0.22)" }}
           />
           <span
-            className="text-[13px] font-medium uppercase tracking-[0.18em]"
-            style={{ color: "rgba(29,29,31,0.55)" }}
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.12em] text-[20px] md:text-[26px]" : "tracking-[0.05em] text-[22px] md:text-[28px]"}`}
+            style={{ color: "rgba(29,29,31,0.65)" }}
           >
             {lang === "en" ? "Projects" : "作品集"}
           </span>
         </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[40px] md:text-[52px] font-semibold leading-[1.1] tracking-tight mb-8 md:mb-14"
-          style={{ color: "#1D1D1F", letterSpacing: "-0.025em" }}
-        >
-          {lang === "en" ? "Selected work" : "精选作品"}
-        </motion.h2>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 auto-rows-auto">
