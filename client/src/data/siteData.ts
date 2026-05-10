@@ -326,7 +326,7 @@ export const AI_STACK = [
   {
     category: "Ship",
     description: { en: "Deploy & deliver", zh: "部署与交付" } as BiText,
-    tools: ["Vercel", "GitHub"],
+    tools: ["Vercel", "GitHub", "Cloudflare", "Supabase"],
   },
 ];
 

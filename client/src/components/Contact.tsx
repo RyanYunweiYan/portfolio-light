@@ -124,6 +124,36 @@ export default function Contact() {
           </span>
         </motion.div>
 
+        {/* Availability pill — green dot signal for HR */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex w-fit items-center gap-2 px-3.5 py-1.5 rounded-full mb-8"
+          style={{
+            backgroundColor: "rgba(48,209,88,0.10)",
+            border: "1px solid rgba(48,209,88,0.28)",
+          }}
+        >
+          <span className="relative flex w-2 h-2 flex-shrink-0">
+            <span
+              aria-hidden
+              className="absolute inline-flex w-full h-full rounded-full opacity-60 animate-ping"
+              style={{ backgroundColor: "#30D158" }}
+            />
+            <span
+              className="relative inline-flex rounded-full w-2 h-2"
+              style={{ backgroundColor: "#30D158" }}
+            />
+          </span>
+          <span
+            className="text-[12px] md:text-[13px] font-medium tracking-wide"
+            style={{ color: "#30D158" }}
+          >
+            {t(PROFILE.availability)}
+          </span>
+        </motion.div>
+
         {/* Email — large, clickable, with underline-from-left on hover */}
         <motion.a
           href={`mailto:${PROFILE.email}`}
@@ -154,7 +184,7 @@ export default function Contact() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="flex flex-wrap gap-4 sm:gap-5 md:gap-6 mb-12"
+          className="flex flex-wrap gap-4 sm:gap-5 md:gap-6"
         >
           {SOCIAL_LINKS.map((link, i) => (
             <SocialIcon
@@ -165,17 +195,6 @@ export default function Contact() {
             />
           ))}
         </motion.div>
-
-        {/* Availability */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 1.2 }}
-          className="text-[15px] font-normal leading-[1.6]"
-          style={{ color: "rgba(245,245,247,0.55)" }}
-        >
-          {t(PROFILE.availability)}
-        </motion.p>
       </div>
     </section>
   );
