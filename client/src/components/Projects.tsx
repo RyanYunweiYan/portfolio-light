@@ -1,8 +1,6 @@
 /**
  * Projects / AI Works Section
- * Design: Bento Grid with asymmetric card sizes, 3D flip-in wave entrance
- * Animation: cards fade+slide+scale+rotateY wave from left to right
- * Hover: lift -8px, shadow expands, thumbnail scales 1.03, blue border tint
+ * Design: quiet proof gallery with real project images and restrained motion
  * Click: opens detail modal
  * Data: from siteData.ts PROJECTS
  */
@@ -14,15 +12,6 @@ import { PROJECTS } from "@/data/siteData";
 import { EASE } from "@/const";
 import type { Project } from "@/data/siteData";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-// Gradient colors for projects without cover images
-const gradientPalette = [
-  "linear-gradient(135deg, #0071E3 0%, #00B4D8 100%)",
-  "linear-gradient(135deg, #5856D6 0%, #0071E3 100%)",
-  "linear-gradient(135deg, #0071E3 0%, #34C759 100%)",
-  "linear-gradient(135deg, #FF9500 0%, #FF2D55 100%)",
-  "linear-gradient(135deg, #AF52DE 0%, #FF2D55 100%)",
-];
 
 function ProjectCard({
   project,
@@ -44,31 +33,31 @@ function ProjectCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.95, filter: "blur(4px)" }}
-      animate={
-        isInView ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : {}
-      }
+      initial={{ opacity: 0, y: 22, filter: "blur(4px)" }}
+      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
       transition={{
         duration: 0.6,
         delay: 0.15 + index * 0.12,
         ease: EASE.smooth,
       }}
       onClick={onClick}
-      className={`group relative cursor-pointer overflow-hidden rounded-[8px] border border-black/[0.06] bg-white transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:border-[#0071E3]/25 hover:shadow-[0_28px_80px_rgba(0,0,0,0.12),0_10px_24px_rgba(0,113,227,0.08)] active:scale-[0.98] ${
+      className={`group relative cursor-pointer overflow-hidden rounded-[8px] border border-black/[0.06] bg-white transition-[transform,box-shadow,border-color] duration-300 ease-out shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:border-black/[0.12] hover:shadow-[0_18px_48px_rgba(0,0,0,0.08)] active:scale-[0.99] ${
         project.size === "large"
           ? "md:col-span-2"
           : project.size === "medium"
-          ? "md:col-span-1 md:row-span-1"
-          : "md:col-span-1 md:row-span-1"
+            ? "md:col-span-1 md:row-span-1"
+            : "md:col-span-1 md:row-span-1"
       }`}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[3px] origin-left scale-x-0 bg-[#0071E3] transition-transform duration-300 group-hover:scale-x-100" />
-      <div className="pointer-events-none absolute right-4 top-4 z-10 rounded-full border border-white/70 bg-white/75 px-2.5 py-1 text-[11px] font-semibold text-black/45 shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-xl">
+      <div className="pointer-events-none absolute right-4 top-4 z-10 rounded-full border border-black/[0.06] bg-white/82 px-2.5 py-1 text-[11px] font-medium text-black/45 shadow-[0_8px_24px_rgba(0,0,0,0.06)] backdrop-blur-xl">
         {String(index + 1).padStart(2, "0")}
       </div>
 
       {/* Thumbnail / Gradient placeholder */}
-      <div className="overflow-hidden aspect-[4/3]" style={{ backgroundColor: "#F5F5F7" }}>
+      <div
+        className="overflow-hidden aspect-[4/3]"
+        style={{ backgroundColor: "#F5F5F7" }}
+      >
         {project.coverImage ? (
           <motion.img
             src={project.coverImage}
@@ -80,16 +69,8 @@ function ProjectCard({
             loading="lazy"
           />
         ) : (
-          <div
-            className="w-full h-full flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.03]"
-            style={{
-              background: gradientPalette[index % gradientPalette.length],
-            }}
-          >
-            <p
-              className="text-[20px] md:text-[24px] font-bold text-white/90 text-center px-6"
-              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}
-            >
+          <div className="flex h-full w-full items-center justify-center bg-[#F5F5F7] px-6">
+            <p className="text-center text-[20px] font-semibold text-black/72 md:text-[24px]">
               {t(project.title)}
             </p>
           </div>
@@ -100,8 +81,8 @@ function ProjectCard({
       <div className="p-5 md:p-6">
         <div className="mb-3 flex flex-wrap items-center gap-2.5">
           <span
-            className="text-[11px] font-semibold uppercase tracking-[0.12em]"
-            style={{ color: "#0071E3" }}
+            className="text-[11px] font-semibold uppercase"
+            style={{ color: "rgba(29,29,31,0.48)", letterSpacing: "0.08em" }}
           >
             {project.tags[0]}
           </span>
@@ -115,7 +96,10 @@ function ProjectCard({
             <span
               className="text-[11px] font-medium px-2 py-0.5 rounded-full"
               style={{
-                backgroundColor: project.status === "in-progress" ? "rgba(255,149,0,0.1)" : "rgba(0,113,227,0.1)",
+                backgroundColor:
+                  project.status === "in-progress"
+                    ? "rgba(255,149,0,0.1)"
+                    : "rgba(0,113,227,0.1)",
                 color: project.status === "in-progress" ? "#FF9500" : "#0071E3",
               }}
             >
@@ -140,8 +124,8 @@ function ProjectCard({
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold transition-all duration-200 hover:gap-2.5"
+            onClick={e => e.stopPropagation()}
+            className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors duration-200 hover:text-[#005BB5]"
             style={{ color: "#0071E3" }}
           >
             {lang === "en" ? "View Live" : "在线查看"}
@@ -161,20 +145,23 @@ function ProjectModal({
   onClose: () => void;
 }) {
   const { lang, t } = useLanguage();
-  const projectIndex = PROJECTS.findIndex((p) => p.id === project.id);
   const details = t(project.details);
 
   // ESC key handler
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
   // Body scroll lock
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   return (
@@ -184,7 +171,10 @@ function ProjectModal({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
-      style={{ backgroundColor: "rgba(0,0,0,0.4)", backdropFilter: "blur(20px)" }}
+      style={{
+        backgroundColor: "rgba(0,0,0,0.36)",
+        backdropFilter: "blur(18px)",
+      }}
       onClick={onClose}
     >
       <motion.div
@@ -199,10 +189,10 @@ function ProjectModal({
           backgroundColor: "rgba(255,255,255,0.88)",
           backdropFilter: "blur(40px) saturate(200%)",
           WebkitBackdropFilter: "blur(40px) saturate(200%)",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5)",
-          border: "1px solid rgba(255,255,255,0.3)",
+          boxShadow: "0 32px 88px rgba(0,0,0,0.16)",
+          border: "1px solid rgba(0,0,0,0.06)",
         }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         {/* Close button */}
         <button
@@ -221,16 +211,8 @@ function ProjectModal({
             style={{ backgroundColor: "#F5F5F7" }}
           />
         ) : (
-          <div
-            className="w-full aspect-[16/9] flex items-center justify-center"
-            style={{
-              background: gradientPalette[projectIndex % gradientPalette.length],
-            }}
-          >
-            <p
-              className="text-[28px] md:text-[36px] font-bold text-white/90 text-center px-8"
-              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}
-            >
+          <div className="flex aspect-[16/9] w-full items-center justify-center bg-[#F5F5F7] px-8">
+            <p className="text-center text-[28px] font-semibold text-black/72 md:text-[36px]">
               {t(project.title)}
             </p>
           </div>
@@ -281,7 +263,7 @@ function ProjectModal({
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
+            {project.tags.map(tag => (
               <span
                 key={tag}
                 className="inline-block px-3 py-1 text-[12px] font-medium rounded-full"
@@ -325,12 +307,13 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative overflow-hidden py-20 md:py-36"
-      style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F7F8FA 46%, #FFFFFF 100%)" }}
+      className="relative overflow-hidden bg-white py-20 md:py-36"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,113,227,0.06),transparent)]" />
       {/* Apple-style thin line separator */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[1px]" style={{ background: "rgba(29,29,31,0.15)" }} />
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[1px]"
+        style={{ background: "rgba(29,29,31,0.15)" }}
+      />
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Section label */}
         <motion.p
@@ -343,15 +326,17 @@ export default function Projects() {
           {lang === "en" ? "Projects" : "作品集"}
         </motion.p>
 
-        <div className="mb-8 grid gap-4 md:mb-14 md:grid-cols-[1fr_360px] md:items-end">
+        <div className="mb-8 grid gap-4 md:mb-14 md:grid-cols-[1fr_380px] md:items-end">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[36px] font-semibold leading-[1.15] md:text-[48px]"
+            className="text-[36px] font-semibold leading-[1.14] md:text-[52px]"
             style={{ color: "#1D1D1F" }}
           >
-            {lang === "en" ? "Selected work with shipped signal." : "有交付信号的精选作品。"}
+            {lang === "en"
+              ? "Selected work, shipped into use."
+              : "被真实使用的精选作品。"}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -360,8 +345,8 @@ export default function Projects() {
             className="text-[15px] leading-[1.7] text-black/50 md:text-[16px]"
           >
             {lang === "en"
-              ? "The emphasis is not volume. It is whether AI moved from idea to interface, user, and measurable outcome."
-              : "重点不是作品数量，而是 AI 是否从想法走到界面、用户和可验证结果。"}
+              ? "A small set of proof points where AI moved from idea to interface, user, and measurable outcome."
+              : "少而明确的证据：AI 从想法走到界面、用户和可验证结果。"}
           </motion.p>
         </div>
 

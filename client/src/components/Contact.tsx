@@ -1,12 +1,18 @@
 /**
  * Contact Section
- * Design: Dark background, editorial feel
- * Animation: headline words fade in one at a time
+ * Design: quiet closing section with restrained dark contrast
  * Content: email, social links, availability
  */
 import { motion } from "framer-motion";
 import { useInView } from "@/hooks/useScrollAnimation";
-import { ArrowRight, Mail, Linkedin, Github, MessageCircle, Video } from "lucide-react";
+import {
+  ArrowRight,
+  Mail,
+  Linkedin,
+  Github,
+  MessageCircle,
+  Video,
+} from "lucide-react";
 import { PROFILE, SOCIAL_LINKS } from "@/data/siteData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
@@ -43,11 +49,12 @@ function SocialIcon({
   const content = (
     <>
       <div
-        className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+        className="flex h-11 w-11 items-center justify-center rounded-[8px] transition-all duration-200 ease-out"
         style={{
-          backgroundColor: hovered ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.06)",
-          border: `1px solid ${hovered ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.08)"}`,
-          transform: hovered ? "scale(1.15)" : "scale(1)",
+          backgroundColor: hovered
+            ? "rgba(255,255,255,0.1)"
+            : "rgba(255,255,255,0.045)",
+          border: `1px solid ${hovered ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.08)"}`,
         }}
       >
         <Icon
@@ -77,7 +84,7 @@ function SocialIcon({
         delay: 0.35 + index * 0.08,
         ease: EASE.smooth,
       }}
-      className="flex w-[86px] flex-col items-center gap-2 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+      className="flex w-[86px] flex-col items-center gap-2 transition-all duration-200 ease-out"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -97,18 +104,8 @@ export default function Contact() {
       id="contact"
       ref={ref}
       className="relative overflow-hidden py-20 md:py-36"
-      style={{ backgroundColor: "#242424" }}
+      style={{ backgroundColor: "#161617" }}
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage: "linear-gradient(180deg, transparent 0%, black 28%, black 72%, transparent 100%)",
-        }}
-      />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[min(86vw,920px)] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/[0.07]" />
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Section label */}
         <motion.p
@@ -130,8 +127,12 @@ export default function Contact() {
                   key={`${lang}-${i}`}
                   initial={{ opacity: 0, y: 18 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.2 + i * 0.15, ease: EASE.smooth }}
-                  className="inline-block mr-3 text-[42px] font-semibold leading-[1.08] md:text-[68px]"
+                  transition={{
+                    duration: 0.45,
+                    delay: 0.2 + i * 0.15,
+                    ease: EASE.smooth,
+                  }}
+                  className="mr-3 inline-block text-[42px] font-semibold leading-[1.08] md:text-[68px]"
                   style={{ color: "#F5F5F7" }}
                 >
                   {word}
@@ -145,16 +146,23 @@ export default function Contact() {
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5, ease: EASE.smooth }}
-              className="group mb-10 inline-flex max-w-full items-center gap-3 rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-3 transition-all duration-300 hover:border-[#0071E3]/45 hover:bg-white/[0.09] sm:px-5"
+              className="group mb-10 inline-flex max-w-full items-center gap-3 rounded-full border border-white/[0.12] bg-white/[0.055] px-4 py-3 transition-all duration-300 hover:border-[#0071E3]/40 hover:bg-white/[0.085] sm:px-5"
             >
-              <Mail size={20} className="flex-shrink-0" style={{ color: "#0071E3" }} />
+              <Mail
+                size={20}
+                className="flex-shrink-0"
+                style={{ color: "#0071E3" }}
+              />
               <span
                 className="min-w-0 break-all text-[15px] font-medium sm:text-[17px] md:text-[19px]"
                 style={{ color: "#F5F5F7" }}
               >
                 {PROFILE.email}
               </span>
-              <ArrowRight size={18} className="hidden flex-shrink-0 text-[#0071E3] transition-transform duration-300 group-hover:translate-x-1 sm:block" />
+              <ArrowRight
+                size={18}
+                className="hidden flex-shrink-0 text-[#0071E3] transition-transform duration-300 group-hover:translate-x-1 sm:block"
+              />
             </motion.a>
           </div>
 
@@ -162,7 +170,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.65, ease: EASE.smooth }}
-            className="rounded-[8px] border border-white/[0.1] bg-white/[0.055] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-6"
+            className="rounded-[8px] border border-white/[0.1] bg-white/[0.045] p-5 md:p-6"
           >
             <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/42">
               {lang === "en" ? "Current signal" : "当前信号"}
