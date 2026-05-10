@@ -156,12 +156,6 @@ export default function About() {
           className="flex items-center gap-3 md:gap-4 mb-6 md:mb-10"
         >
           <span
-            className="font-mono tabular-nums text-[30px] md:text-[40px] font-normal leading-none"
-            style={{ color: "rgba(29,29,31,0.45)", letterSpacing: "-0.02em" }}
-          >
-            01
-          </span>
-          <span
             aria-hidden
             className="h-px w-10 md:w-14 flex-shrink-0"
             style={{ background: "rgba(29,29,31,0.28)" }}

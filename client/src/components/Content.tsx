@@ -264,12 +264,6 @@ export default function ContentSection() {
             className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
           >
             <span
-              className="font-mono tabular-nums text-[30px] md:text-[40px] font-normal leading-none"
-              style={{ color: "rgba(245,245,247,0.5)", letterSpacing: "-0.02em" }}
-            >
-              03
-            </span>
-            <span
               aria-hidden
               className="h-px w-10 md:w-14 flex-shrink-0"
               style={{ background: "rgba(245,245,247,0.3)" }}
