@@ -106,49 +106,39 @@ export default function Contact() {
           className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
         >
           <span
-            className="font-mono tabular-nums text-[22px] md:text-[28px] font-normal leading-none"
+            className="font-mono tabular-nums text-[30px] md:text-[40px] font-normal leading-none"
             style={{ color: "rgba(245,245,247,0.5)", letterSpacing: "-0.02em" }}
           >
             04
           </span>
           <span
             aria-hidden
-            className="h-px w-8 md:w-10 flex-shrink-0"
+            className="h-px w-10 md:w-14 flex-shrink-0"
             style={{ background: "rgba(245,245,247,0.3)" }}
           />
           <span
-            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[16px] md:text-[20px]" : "tracking-[0.05em] text-[18px] md:text-[22px]"}`}
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[18px] md:text-[22px]" : "tracking-[0.05em] text-[20px] md:text-[24px]"}`}
             style={{ color: "rgba(245,245,247,0.62)" }}
           >
             {lang === "en" ? "Let's connect" : "保持联系"}
           </span>
         </motion.div>
 
-        {/* Availability pill — green dot signal for HR */}
+        {/* Availability — minimal status dot, no glow */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex w-fit items-center gap-2 px-3.5 py-1.5 rounded-full mb-8"
-          style={{
-            backgroundColor: "rgba(48,209,88,0.10)",
-            border: "1px solid rgba(48,209,88,0.28)",
-          }}
+          className="flex items-center gap-2.5 mb-8"
         >
-          <span className="relative flex w-2 h-2 flex-shrink-0">
-            <span
-              aria-hidden
-              className="absolute inline-flex w-full h-full rounded-full opacity-60 animate-ping"
-              style={{ backgroundColor: "#30D158" }}
-            />
-            <span
-              className="relative inline-flex rounded-full w-2 h-2"
-              style={{ backgroundColor: "#30D158" }}
-            />
-          </span>
           <span
-            className="text-[12px] md:text-[13px] font-medium tracking-wide"
-            style={{ color: "#30D158" }}
+            aria-hidden
+            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+            style={{ backgroundColor: "#30D158" }}
+          />
+          <span
+            className="text-[13px] md:text-[14px] font-normal"
+            style={{ color: "rgba(245,245,247,0.7)" }}
           >
             {t(PROFILE.availability)}
           </span>

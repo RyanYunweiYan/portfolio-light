@@ -92,11 +92,11 @@ export default function AIStack() {
         >
           <span
             aria-hidden
-            className="h-px w-8 md:w-10 flex-shrink-0"
+            className="h-px w-10 md:w-14 flex-shrink-0"
             style={{ background: "rgba(245,245,247,0.3)" }}
           />
           <span
-            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[16px] md:text-[20px]" : "tracking-[0.05em] text-[18px] md:text-[22px]"}`}
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[18px] md:text-[22px]" : "tracking-[0.05em] text-[20px] md:text-[24px]"}`}
             style={{ color: "rgba(245,245,247,0.62)" }}
           >
             {lang === "en" ? "AI Stack" : "AI 工具栈"}

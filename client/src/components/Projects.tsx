@@ -85,7 +85,7 @@ function ProjectCard({
             }}
           >
             <p
-              className="text-[20px] md:text-[24px] font-bold text-white/90 text-center px-6"
+              className="text-[18px] md:text-[22px] font-bold text-white/90 text-center px-6"
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.2)" }}
             >
               {t(project.title)}
@@ -337,18 +337,18 @@ export default function Projects() {
           className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
         >
           <span
-            className="font-mono tabular-nums text-[22px] md:text-[28px] font-normal leading-none"
+            className="font-mono tabular-nums text-[30px] md:text-[40px] font-normal leading-none"
             style={{ color: "rgba(29,29,31,0.45)", letterSpacing: "-0.02em" }}
           >
             02
           </span>
           <span
             aria-hidden
-            className="h-px w-8 md:w-10 flex-shrink-0"
+            className="h-px w-10 md:w-14 flex-shrink-0"
             style={{ background: "rgba(29,29,31,0.28)" }}
           />
           <span
-            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[16px] md:text-[20px]" : "tracking-[0.05em] text-[18px] md:text-[22px]"}`}
+            className={`font-medium ${lang === "en" ? "uppercase tracking-[0.1em] text-[18px] md:text-[22px]" : "tracking-[0.05em] text-[20px] md:text-[24px]"}`}
             style={{ color: "rgba(29,29,31,0.55)" }}
           >
             {lang === "en" ? "Projects" : "作品集"}
