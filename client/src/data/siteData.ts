@@ -311,12 +311,12 @@ export const AI_STACK = [
   {
     category: "Think",
     description: { en: "Research & reasoning", zh: "研究与推理" } as BiText,
-    tools: ["Claude Max", "ChatGPT Plus", "Gemini Pro", "Grok", "NotebookLM", "Plaud"],
+    tools: ["Claude Max", "ChatGPT Pro", "Gemini Pro", "Grok", "NotebookLM", "Plaud"],
   },
   {
     category: "Build",
     description: { en: "Development & automation", zh: "开发与自动化" } as BiText,
-    tools: ["Claude Code", "Cursor", "Lovable", "Manus Pro", "Firecrawl"],
+    tools: ["Claude Code", "Codex", "Cursor", "Lovable", "Manus Pro", "Firecrawl"],
   },
   {
     category: "Create",
