@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="preload" href="./_source/lanzhou-radish.png" as="image" />
+
 <style>
   :root { --ink: #3a2e1f; --line: #5c4a35; --paper: #f3eadb; }
   * { box-sizing: border-box; }
@@ -30,8 +32,10 @@
   .nav-back { align-self: flex-start; max-width: 1400px; width: 100%; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; margin-bottom: 16px; text-transform: uppercase; }
   .nav-back:hover { opacity: 1; }
   .stage { position: relative; width: 100%; max-width: 1400px; aspect-ratio: 1672 / 941; box-shadow: 0 4px 24px rgba(58, 46, 31, 0.12); }
-  .stage img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
-  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .stage img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; opacity: 0; transition: opacity 0.35s ease-out; }
+  .stage.ready img { opacity: 1; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; opacity: 0; transition: opacity 0.45s ease-out 0.1s; }
+  .stage.ready svg { opacity: 1; }
   .stage.interactive { cursor: pointer; touch-action: manipulation; }
   .stage.interactive:hover { box-shadow: 0 8px 32px rgba(58, 46, 31, 0.22); }
   .stage .hint { position: absolute; top: 12px; right: 12px; padding: 6px 12px; background: rgba(243, 234, 219, 0.85); backdrop-filter: blur(4px); border-radius: 999px; font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; pointer-events: none; }
@@ -58,8 +62,8 @@
 </head>
 <body>
 <a class="nav-back" href="./index.html">← Bitepedia</a>
-<div class="stage">
-  <img src="./_source/lanzhou-radish.png" alt="白萝卜" />
+<div class="stage" id="stage">
+  <img src="./_source/lanzhou-radish.png" alt="白萝卜" id="stageImg" />
   <svg viewBox="0 0 1672 941" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <text class="t-title" x="890.6" y="90.3" text-anchor="middle">白萝卜 · 图鉴</text>
       <text class="t-title-en" x="918.6" y="120.5" text-anchor="middle">WHITE RADISH</text>
@@ -76,6 +80,17 @@
   </svg>
   
 </div>
+<script>
+// 等图加载完才把 stage 标记为 ready,触发 img + SVG 一起 fadeIn(防 SVG 先出图后到的穿帮)
+(function() {
+  const stage = document.getElementById('stage');
+  const img = document.getElementById('stageImg');
+  if (!stage || !img) return;
+  function ready() { stage.classList.add('ready'); }
+  if (img.complete && img.naturalWidth > 0) ready();
+  else { img.addEventListener('load', ready); img.addEventListener('error', ready); }
+})();
+</script>
 <a class="drill-back" href="./lanzhou-main.html">← Back to 兰州牛肉面</a>
 
 </body>
