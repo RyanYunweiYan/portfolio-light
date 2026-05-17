@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>兰州牛肉面 · Bitepedia</title>
+<meta property="og:title" content="兰州牛肉面 · Bitepedia" />
+<meta property="og:description" content="A bite-sized encyclopedia of food, visualized as vintage botanical specimen plates." />
+<meta property="og:image" content="./_source/lanzhou-main.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink: #3a2e1f; --line: #5c4a35; --paper: #f3eadb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Noto Serif SC", serif; }
+  .t-title { font-family: "Noto Serif SC", serif; font-weight: 600; font-size: 56px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-title-en { font-family: "EB Garamond", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.22em; fill: var(--ink); text-transform: uppercase; }
+  .t-label { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 28px; letter-spacing: 0.04em; fill: var(--ink); }
+  .t-label-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 20px; fill: var(--ink); opacity: 0.78; }
+  .t-extra { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 24px; letter-spacing: 0.06em; fill: var(--ink); }
+  .t-extra-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .t-footer { font-family: "Noto Serif SC", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-footer-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .leader { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .anchor { fill: var(--line); }
+
+  body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px 48px; }
+  .nav-back { align-self: flex-start; max-width: 1400px; width: 100%; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; margin-bottom: 16px; text-transform: uppercase; }
+  .nav-back:hover { opacity: 1; }
+  .stage { position: relative; width: 100%; max-width: 1400px; aspect-ratio: 1672 / 941; box-shadow: 0 4px 24px rgba(58, 46, 31, 0.12); }
+  .stage img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .stage.interactive { cursor: pointer; touch-action: manipulation; }
+  .stage.interactive:hover { box-shadow: 0 8px 32px rgba(58, 46, 31, 0.22); }
+  .stage .hint { position: absolute; top: 12px; right: 12px; padding: 6px 12px; background: rgba(243, 234, 219, 0.85); backdrop-filter: blur(4px); border-radius: 999px; font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; pointer-events: none; }
+  .stage .ripple { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(92, 74, 53, 0.35); transform: translate(-50%, -50%) scale(0); animation: rippleOut 0.6s ease-out forwards; pointer-events: none; }
+  @keyframes rippleOut { to { transform: translate(-50%, -50%) scale(9); opacity: 0; } }
+  .stage .ripple-soft { background: rgba(92, 74, 53, 0.18); }
+  .hit { fill: transparent; pointer-events: none; }
+  .loading-overlay { position: fixed; inset: 0; background: rgba(243, 234, 219, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; display: grid; place-items: center; opacity: 0; animation: fadeIn 0.32s ease-out forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .loading-card { text-align: center; max-width: 480px; padding: 32px; }
+  .loading-spinner { width: 56px; height: 56px; border: 2.5px solid rgba(58,46,31,0.13); border-top-color: #5c4a35; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 28px; }
+  .loading-line { font-family: "EB Garamond", serif; font-style: italic; font-size: 17px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; line-height: 1.55; }
+  .loading-line .target { font-family: "Noto Serif SC", serif; font-style: normal; font-weight: 600; font-size: 26px; opacity: 1; display: block; margin-top: 8px; letter-spacing: 0.1em; }
+  .loading-sub { margin-top: 24px; font-family: "EB Garamond", serif; font-size: 11px; opacity: 0.45; letter-spacing: 0.28em; text-transform: uppercase; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .drill-nav { margin-top: 28px; font-family: "Noto Serif SC", serif; font-size: 15px; letter-spacing: 0.06em; text-align: center; }
+  .drill-nav .label { font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; opacity: 0.5; margin-right: 12px; letter-spacing: 0.12em; }
+  .drill-nav a { color: var(--ink); text-decoration: none; opacity: 0.7; padding: 0 10px; border-right: 1px solid rgba(58,46,31,0.2); }
+  .drill-nav a:last-child { border-right: none; }
+  .drill-nav a:hover { opacity: 1; }
+  .drill-back { display: inline-block; margin-top: 28px; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .drill-back:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<a class="nav-back" href="./index.html">← Bitepedia</a>
+<div class="stage">
+  <img src="./_source/lanzhou-main.png" alt="兰州牛肉面" />
+  <svg viewBox="0 0 1672 941" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <text class="t-title" x="80.0" y="92.0" text-anchor="start">兰州牛肉面图鉴</text>
+      <text class="t-title-en" x="80.0" y="128.0" text-anchor="start">LANZHOU BEEF NOODLE</text>
+      <text class="t-label" x="553.5" y="504.2" text-anchor="end">一清 · 牛骨清汤</text>
+      <text class="t-label-en" x="553.5" y="532.2" text-anchor="end">Beef Bone Broth</text>
+      <circle class="hit" cx="760.4" cy="206.6" r="0" data-drill-to="lanzhou-radish.html" data-drill-zh="二白 · 白萝卜" />
+      <text class="t-label" x="760.4" y="206.6" text-anchor="end">二白 · 白萝卜</text>
+      <text class="t-label-en" x="760.4" y="234.6" text-anchor="end">Sliced White Radish</text>
+      <circle class="hit" cx="962.7" cy="155.4" r="0" data-drill-to="lanzhou-chili.html" data-drill-zh="三红 · 红油辣子" />
+      <text class="t-label" x="962.7" y="155.4" text-anchor="start">三红 · 红油辣子</text>
+      <text class="t-label-en" x="962.7" y="183.4" text-anchor="start">Red Chili Oil</text>
+      <circle class="hit" cx="1467.4" cy="457.7" r="0" data-drill-to="lanzhou-scallion.html" data-drill-zh="四绿 · 香菜蒜苗" />
+      <text class="t-label" x="1467.4" y="457.7" text-anchor="end">四绿 · 香菜蒜苗</text>
+      <text class="t-label-en" x="1467.4" y="485.7" text-anchor="end">Cilantro &amp;amp; Garlic Sprouts</text>
+      <circle class="hit" cx="1279.0" cy="764.7" r="0" data-drill-to="lanzhou-noodle.html" data-drill-zh="五黄 · 面条筋道" />
+      <text class="t-label" x="1279.0" y="764.7" text-anchor="end">五黄 · 面条筋道</text>
+      <text class="t-label-en" x="1279.0" y="792.7" text-anchor="end">Al Dente Wheat Noodles</text>
+      <text class="t-footer" x="679.0" y="887.9" text-anchor="start">一清 · 二白 · 三红 · 四绿 · 五黄</text>
+  </svg>
+  <div class="hint">Tap any food to drill in</div>
+</div>
+<div class="drill-nav"><span class="label">Drill into</span><a href="./lanzhou-radish.html">白萝卜</a><a href="./lanzhou-chili.html">红油</a><a href="./lanzhou-scallion.html">蒜苗香菜</a><a href="./lanzhou-noodle.html">面条</a></div>
+<script>
+(function() {
+  const stage = document.querySelector('.stage');
+  if (!stage) return;
+  const svg = stage.querySelector('svg');
+  if (!svg) return;
+  const targets = Array.from(svg.querySelectorAll('[data-drill-to]')).map(function(el) {
+    return {
+      x: parseFloat(el.getAttribute('cx')),
+      y: parseFloat(el.getAttribute('cy')),
+      url: el.getAttribute('data-drill-to'),
+      zh: el.getAttribute('data-drill-zh') || '',
+    };
+  });
+  if (targets.length === 0) return;
+  stage.classList.add('interactive');
+  const MAX_DRILL_DIST = 380; // viewBox px;超出此距离的点击只波纹不下钻
+  let busy = false;
+  function ripple(localX, localY, soft) {
+    const r = document.createElement('div');
+    r.className = 'ripple' + (soft ? ' ripple-soft' : '');
+    r.style.left = localX + 'px';
+    r.style.top = localY + 'px';
+    stage.appendChild(r);
+    setTimeout(function() { r.remove(); }, 700);
+  }
+  const CHEF_LINES = [
+    'Asking the AI chef about',
+    'Consulting the ancient cookbook for',
+    'Composing a fresh cross-section of',
+    'Whisking thoughts into',
+    'Distilling the essence of',
+    'Engraving the next plate of',
+    'Reducing the broth for',
+    'Slicing through layers of',
+    'Folding the dough into',
+    'Plating a fresh bite of',
+  ];
+  function showLoading(target) {
+    const ov = document.createElement('div');
+    ov.className = 'loading-overlay';
+    const line = CHEF_LINES[Math.floor(Math.random() * CHEF_LINES.length)];
+    ov.innerHTML = '<div class="loading-card">' +
+      '<div class="loading-spinner"></div>' +
+      '<div class="loading-line">' + line + '<span class="target">' + (target.zh || '…') + '</span></div>' +
+      '<div class="loading-sub">Generating · please wait</div>' +
+      '</div>';
+    document.body.appendChild(ov);
+  }
+  function go(clientX, clientY) {
+    if (busy) return;
+    const rect = stage.getBoundingClientRect();
+    const localX = clientX - rect.left;
+    const localY = clientY - rect.top;
+    const vbX = localX / rect.width * 1672;
+    const vbY = localY / rect.height * 941;
+    let best = null, minD = Infinity;
+    for (let i = 0; i < targets.length; i++) {
+      const t = targets[i];
+      const d = (t.x - vbX) * (t.x - vbX) + (t.y - vbY) * (t.y - vbY);
+      if (d < minD) { minD = d; best = t; }
+    }
+    if (!best || Math.sqrt(minD) > MAX_DRILL_DIST) {
+      ripple(localX, localY, true); // 软波纹,不下钻
+      return;
+    }
+    busy = true;
+    ripple(localX, localY, false);
+    setTimeout(function() { showLoading(best); }, 320);
+    // 8-11 秒随机
+    const delay = 8000 + Math.random() * 3000;
+    setTimeout(function() { window.location.href = './' + best.url; }, delay);
+  }
+  stage.addEventListener('click', function(e) { go(e.clientX, e.clientY); });
+  stage.addEventListener('touchend', function(e) {
+    if (e.changedTouches.length === 0) return;
+    const t = e.changedTouches[0];
+    go(t.clientX, t.clientY);
+    e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+</body>
+</html>

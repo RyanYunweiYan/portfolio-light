@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>小笼包 · Bitepedia</title>
+<meta property="og:title" content="小笼包 · Bitepedia" />
+<meta property="og:description" content="A bite-sized encyclopedia of food, visualized as vintage botanical specimen plates." />
+<meta property="og:image" content="./_source/xiaolongbao-main.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink: #3a2e1f; --line: #5c4a35; --paper: #f3eadb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Noto Serif SC", serif; }
+  .t-title { font-family: "Noto Serif SC", serif; font-weight: 600; font-size: 56px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-title-en { font-family: "EB Garamond", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.22em; fill: var(--ink); text-transform: uppercase; }
+  .t-label { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 28px; letter-spacing: 0.04em; fill: var(--ink); }
+  .t-label-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 20px; fill: var(--ink); opacity: 0.78; }
+  .t-extra { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 24px; letter-spacing: 0.06em; fill: var(--ink); }
+  .t-extra-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .t-footer { font-family: "Noto Serif SC", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-footer-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .leader { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .anchor { fill: var(--line); }
+
+  body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px 48px; }
+  .nav-back { align-self: flex-start; max-width: 1400px; width: 100%; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; margin-bottom: 16px; text-transform: uppercase; }
+  .nav-back:hover { opacity: 1; }
+  .stage { position: relative; width: 100%; max-width: 1400px; aspect-ratio: 1672 / 941; box-shadow: 0 4px 24px rgba(58, 46, 31, 0.12); }
+  .stage img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .stage.interactive { cursor: pointer; touch-action: manipulation; }
+  .stage.interactive:hover { box-shadow: 0 8px 32px rgba(58, 46, 31, 0.22); }
+  .stage .hint { position: absolute; top: 12px; right: 12px; padding: 6px 12px; background: rgba(243, 234, 219, 0.85); backdrop-filter: blur(4px); border-radius: 999px; font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; pointer-events: none; }
+  .stage .ripple { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(92, 74, 53, 0.35); transform: translate(-50%, -50%) scale(0); animation: rippleOut 0.6s ease-out forwards; pointer-events: none; }
+  @keyframes rippleOut { to { transform: translate(-50%, -50%) scale(9); opacity: 0; } }
+  .stage .ripple-soft { background: rgba(92, 74, 53, 0.18); }
+  .hit { fill: transparent; pointer-events: none; }
+  .loading-overlay { position: fixed; inset: 0; background: rgba(243, 234, 219, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; display: grid; place-items: center; opacity: 0; animation: fadeIn 0.32s ease-out forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .loading-card { text-align: center; max-width: 480px; padding: 32px; }
+  .loading-spinner { width: 56px; height: 56px; border: 2.5px solid rgba(58,46,31,0.13); border-top-color: #5c4a35; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 28px; }
+  .loading-line { font-family: "EB Garamond", serif; font-style: italic; font-size: 17px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; line-height: 1.55; }
+  .loading-line .target { font-family: "Noto Serif SC", serif; font-style: normal; font-weight: 600; font-size: 26px; opacity: 1; display: block; margin-top: 8px; letter-spacing: 0.1em; }
+  .loading-sub { margin-top: 24px; font-family: "EB Garamond", serif; font-size: 11px; opacity: 0.45; letter-spacing: 0.28em; text-transform: uppercase; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .drill-nav { margin-top: 28px; font-family: "Noto Serif SC", serif; font-size: 15px; letter-spacing: 0.06em; text-align: center; }
+  .drill-nav .label { font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; opacity: 0.5; margin-right: 12px; letter-spacing: 0.12em; }
+  .drill-nav a { color: var(--ink); text-decoration: none; opacity: 0.7; padding: 0 10px; border-right: 1px solid rgba(58,46,31,0.2); }
+  .drill-nav a:last-child { border-right: none; }
+  .drill-nav a:hover { opacity: 1; }
+  .drill-back { display: inline-block; margin-top: 28px; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .drill-back:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<a class="nav-back" href="./index.html">← Bitepedia</a>
+<div class="stage">
+  <img src="./_source/xiaolongbao-main.png" alt="小笼包" />
+  <svg viewBox="0 0 1672 941" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <text class="t-title" x="872.0" y="75.6" text-anchor="middle">小笼包图鉴</text>
+      <text class="t-title-en" x="879.0" y="101.9" text-anchor="middle">THE ANATOMY OF XIAOLONGBAO · NANXIANG 1871</text>
+      <path class="leader" d="M 167.4 404.2 L 80.2 201.9 L 30.2 201.9" />
+      <circle class="anchor" cx="167.4" cy="404.2" r="5" />
+      <text class="t-label" x="30.2" y="201.9" text-anchor="start">竹笼蒸制</text>
+      <text class="t-label-en" x="30.2" y="229.9" text-anchor="start">Bamboo Steamer</text>
+      <path class="leader" d="M 660.4 334.5 L 468.6 120.5 L 418.6 120.5" />
+      <circle class="anchor" cx="660.4" cy="334.5" r="5" />
+      <text class="t-label" x="418.6" y="120.5" text-anchor="end">薄如蝉翼之皮</text>
+      <text class="t-label-en" x="418.6" y="148.5" text-anchor="end">Thin Translucent Skin</text>
+      <path class="leader" d="M 974.4 227.5 L 1045.3 153.1 L 1095.3 153.1" />
+      <circle class="anchor" cx="974.4" cy="227.5" r="5" />
+      <text class="t-label" x="1095.3" y="153.1" text-anchor="start">十八道收口褶</text>
+      <text class="t-label-en" x="1095.3" y="181.1" text-anchor="start">18 Pleats · Traditional Closure</text>
+      <path class="leader" d="M 916.2 422.8 L 1124.4 418.2 L 1174.4 418.2" />
+      <circle class="anchor" cx="916.2" cy="422.8" r="5" data-drill-to="xiaolongbao-filling.html" data-drill-zh="鲜肉馅心" />
+      <text class="t-label" x="1174.4" y="418.2" text-anchor="start">鲜肉馅心</text>
+      <text class="t-label-en" x="1174.4" y="446.2" text-anchor="start">Savory Pork Filling</text>
+      <path class="leader" d="M 953.4 520.5 L 1152.3 546.1 L 1202.3 546.1" />
+      <circle class="anchor" cx="953.4" cy="520.5" r="5" data-drill-to="xiaolongbao-aspic.html" data-drill-zh="金汤如琥珀" />
+      <text class="t-label" x="1202.3" y="546.1" text-anchor="start">金汤如琥珀</text>
+      <text class="t-label-en" x="1202.3" y="574.1" text-anchor="start">Golden Aspic Soup</text>
+      <path class="leader" d="M 1434.8 290.3 L 1542.9 125.2 L 1592.9 125.2" />
+      <circle class="anchor" cx="1434.8" cy="290.3" r="5" data-drill-to="xiaolongbao-vinegar.html" data-drill-zh="镇江香醋" />
+      <text class="t-label" x="1592.9" y="125.2" text-anchor="end">镇江香醋</text>
+      <text class="t-label-en" x="1592.9" y="153.2" text-anchor="end">Zhenjiang Black Vinegar</text>
+      <text class="t-extra" x="632.5" y="901.9" text-anchor="middle">一 · 轻提包顶</text>
+      <text class="t-extra-en" x="632.5" y="925.9" text-anchor="middle">Lift gently by the crown</text>
+      <text class="t-extra" x="981.3" y="907.0" text-anchor="middle">二 · 戳口透气</text>
+      <text class="t-extra-en" x="981.3" y="931.0" text-anchor="middle">Poke a hole, release steam</text>
+      <text class="t-extra" x="1334.8" y="907.0" text-anchor="middle">三 · 先饮其汤</text>
+      <text class="t-extra-en" x="1334.8" y="931.0" text-anchor="middle">Drink the soup, then eat</text>
+  </svg>
+  <div class="hint">Tap any food to drill in</div>
+</div>
+<div class="drill-nav"><span class="label">Drill into</span><a href="./xiaolongbao-filling.html">鲜肉馅</a><a href="./xiaolongbao-aspic.html">皮冻汁水</a><a href="./xiaolongbao-vinegar.html">镇江香醋</a></div>
+<script>
+(function() {
+  const stage = document.querySelector('.stage');
+  if (!stage) return;
+  const svg = stage.querySelector('svg');
+  if (!svg) return;
+  const targets = Array.from(svg.querySelectorAll('[data-drill-to]')).map(function(el) {
+    return {
+      x: parseFloat(el.getAttribute('cx')),
+      y: parseFloat(el.getAttribute('cy')),
+      url: el.getAttribute('data-drill-to'),
+      zh: el.getAttribute('data-drill-zh') || '',
+    };
+  });
+  if (targets.length === 0) return;
+  stage.classList.add('interactive');
+  const MAX_DRILL_DIST = 380; // viewBox px;超出此距离的点击只波纹不下钻
+  let busy = false;
+  function ripple(localX, localY, soft) {
+    const r = document.createElement('div');
+    r.className = 'ripple' + (soft ? ' ripple-soft' : '');
+    r.style.left = localX + 'px';
+    r.style.top = localY + 'px';
+    stage.appendChild(r);
+    setTimeout(function() { r.remove(); }, 700);
+  }
+  const CHEF_LINES = [
+    'Asking the AI chef about',
+    'Consulting the ancient cookbook for',
+    'Composing a fresh cross-section of',
+    'Whisking thoughts into',
+    'Distilling the essence of',
+    'Engraving the next plate of',
+    'Reducing the broth for',
+    'Slicing through layers of',
+    'Folding the dough into',
+    'Plating a fresh bite of',
+  ];
+  function showLoading(target) {
+    const ov = document.createElement('div');
+    ov.className = 'loading-overlay';
+    const line = CHEF_LINES[Math.floor(Math.random() * CHEF_LINES.length)];
+    ov.innerHTML = '<div class="loading-card">' +
+      '<div class="loading-spinner"></div>' +
+      '<div class="loading-line">' + line + '<span class="target">' + (target.zh || '…') + '</span></div>' +
+      '<div class="loading-sub">Generating · please wait</div>' +
+      '</div>';
+    document.body.appendChild(ov);
+  }
+  function go(clientX, clientY) {
+    if (busy) return;
+    const rect = stage.getBoundingClientRect();
+    const localX = clientX - rect.left;
+    const localY = clientY - rect.top;
+    const vbX = localX / rect.width * 1672;
+    const vbY = localY / rect.height * 941;
+    let best = null, minD = Infinity;
+    for (let i = 0; i < targets.length; i++) {
+      const t = targets[i];
+      const d = (t.x - vbX) * (t.x - vbX) + (t.y - vbY) * (t.y - vbY);
+      if (d < minD) { minD = d; best = t; }
+    }
+    if (!best || Math.sqrt(minD) > MAX_DRILL_DIST) {
+      ripple(localX, localY, true); // 软波纹,不下钻
+      return;
+    }
+    busy = true;
+    ripple(localX, localY, false);
+    setTimeout(function() { showLoading(best); }, 320);
+    // 8-11 秒随机
+    const delay = 8000 + Math.random() * 3000;
+    setTimeout(function() { window.location.href = './' + best.url; }, delay);
+  }
+  stage.addEventListener('click', function(e) { go(e.clientX, e.clientY); });
+  stage.addEventListener('touchend', function(e) {
+    if (e.changedTouches.length === 0) return;
+    const t = e.changedTouches[0];
+    go(t.clientX, t.clientY);
+    e.preventDefault();
+  }, { passive: false });
+})();
+</script>
+</body>
+</html>

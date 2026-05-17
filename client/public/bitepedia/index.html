@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bitepedia · 一口大小的图鉴</title>
+<meta name="description" content="A bite-sized encyclopedia of food, visualized as vintage botanical specimen plates." />
+<meta property="og:title" content="Bitepedia · 一口大小的图鉴" />
+<meta property="og:description" content="A bite-sized encyclopedia of food, visualized as vintage botanical specimen plates." />
+<meta property="og:image" content="./_source/xiaolongbao-main.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink: #3a2e1f; --line: #5c4a35; --paper: #f3eadb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Noto Serif SC", serif; }
+  .t-title { font-family: "Noto Serif SC", serif; font-weight: 600; font-size: 56px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-title-en { font-family: "EB Garamond", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.22em; fill: var(--ink); text-transform: uppercase; }
+  .t-label { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 28px; letter-spacing: 0.04em; fill: var(--ink); }
+  .t-label-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 20px; fill: var(--ink); opacity: 0.78; }
+  .t-extra { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 24px; letter-spacing: 0.06em; fill: var(--ink); }
+  .t-extra-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .t-footer { font-family: "Noto Serif SC", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-footer-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .leader { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .anchor { fill: var(--line); }
+
+  body { min-height: 100vh; padding: clamp(8vh, 12vh, 140px) 24px 48px; }
+  .hero { max-width: 980px; margin: 0 auto clamp(56px, 9vh, 120px); text-align: center; }
+  .hero h1 { font-family: "EB Garamond", serif; font-size: clamp(56px, 11vw, 132px); font-weight: 500; letter-spacing: 0.04em; margin: 0 0 12px; line-height: 1; }
+  .hero .sub { font-family: "EB Garamond", serif; font-style: italic; font-size: clamp(18px, 2.4vw, 28px); opacity: 0.7; letter-spacing: 0.04em; margin-bottom: 22px; }
+  .hero .tagline { font-family: "Noto Serif SC", serif; font-size: 13px; letter-spacing: 0.32em; opacity: 0.55; text-transform: uppercase; }
+  .grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 32px; }
+  .card { background: white; box-shadow: 0 6px 24px rgba(58, 46, 31, 0.12); aspect-ratio: 1672/941; position: relative; overflow: hidden; cursor: pointer; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; display: block; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(58, 46, 31, 0.22); }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card .caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 26px; background: linear-gradient(transparent, rgba(58, 46, 31, 0.78) 60%, rgba(58, 46, 31, 0.88)); color: var(--paper); }
+  .card .caption .name { font-family: "Noto Serif SC", serif; font-weight: 600; font-size: 28px; letter-spacing: 0.12em; }
+  .card .caption .sub { font-family: "EB Garamond", serif; font-style: italic; font-size: 16px; opacity: 0.85; margin-top: 4px; letter-spacing: 0.04em; }
+  .foot { text-align: center; margin-top: 80px; font-family: "EB Garamond", serif; font-size: 12px; opacity: 0.45; letter-spacing: 0.16em; text-transform: uppercase; }
+  .foot a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(58, 46, 31, 0.25); }
+  .foot a:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>Bitepedia</h1>
+  <div class="sub">A bite-sized encyclopedia of food</div>
+  <div class="tagline">食物的另一种打开方式</div>
+</header>
+<main class="grid">
+  <a class="card" href="./xiaolongbao-main.html">
+    <img src="./_source/xiaolongbao-main.png" alt="小笼包" />
+    <div class="caption">
+      <div class="name">小笼包</div>
+      <div class="sub">Xiao Long Bao</div>
+    </div>
+  </a>
+  <a class="card" href="./lanzhou-main.html">
+    <img src="./_source/lanzhou-main.png" alt="兰州牛肉面" />
+    <div class="caption">
+      <div class="name">兰州牛肉面</div>
+      <div class="sub">Lanzhou Beef Noodle</div>
+    </div>
+  </a>
+</main>
+<div class="foot">Curated demo · <a href="https://github.com/Bitepedia/bitepedia" target="_blank" rel="noopener">Source on GitHub</a></div>
+</body>
+</html>

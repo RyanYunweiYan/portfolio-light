@@ -14,6 +14,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 // Lazy-load below-the-fold sections for faster initial paint
 const About = lazy(() => import("@/components/About"));
 const Projects = lazy(() => import("@/components/Projects"));
+const BitepediaSection = lazy(() => import("@/components/BitepediaSection"));
 const ContentSection = lazy(() => import("@/components/Content"));
 const AIStack = lazy(() => import("@/components/AIStack"));
 const Contact = lazy(() => import("@/components/Contact"));
@@ -77,6 +78,7 @@ export default function Home() {
         </div>
       }>
         <About />
+        <BitepediaSection />
         <Projects />
         <ContentSection />
         <AIStack />

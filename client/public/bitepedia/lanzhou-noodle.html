@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>面条 · Bitepedia</title>
+<meta property="og:title" content="面条 · Bitepedia" />
+<meta property="og:description" content="A bite-sized encyclopedia of food, visualized as vintage botanical specimen plates." />
+<meta property="og:image" content="./_source/lanzhou-noodle.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink: #3a2e1f; --line: #5c4a35; --paper: #f3eadb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Noto Serif SC", serif; }
+  .t-title { font-family: "Noto Serif SC", serif; font-weight: 600; font-size: 56px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-title-en { font-family: "EB Garamond", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.22em; fill: var(--ink); text-transform: uppercase; }
+  .t-label { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 28px; letter-spacing: 0.04em; fill: var(--ink); }
+  .t-label-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 20px; fill: var(--ink); opacity: 0.78; }
+  .t-extra { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 24px; letter-spacing: 0.06em; fill: var(--ink); }
+  .t-extra-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .t-footer { font-family: "Noto Serif SC", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-footer-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .leader { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .anchor { fill: var(--line); }
+
+  body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px 48px; }
+  .nav-back { align-self: flex-start; max-width: 1400px; width: 100%; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; margin-bottom: 16px; text-transform: uppercase; }
+  .nav-back:hover { opacity: 1; }
+  .stage { position: relative; width: 100%; max-width: 1400px; aspect-ratio: 1672 / 941; box-shadow: 0 4px 24px rgba(58, 46, 31, 0.12); }
+  .stage img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .stage.interactive { cursor: pointer; touch-action: manipulation; }
+  .stage.interactive:hover { box-shadow: 0 8px 32px rgba(58, 46, 31, 0.22); }
+  .stage .hint { position: absolute; top: 12px; right: 12px; padding: 6px 12px; background: rgba(243, 234, 219, 0.85); backdrop-filter: blur(4px); border-radius: 999px; font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; pointer-events: none; }
+  .stage .ripple { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(92, 74, 53, 0.35); transform: translate(-50%, -50%) scale(0); animation: rippleOut 0.6s ease-out forwards; pointer-events: none; }
+  @keyframes rippleOut { to { transform: translate(-50%, -50%) scale(9); opacity: 0; } }
+  .stage .ripple-soft { background: rgba(92, 74, 53, 0.18); }
+  .hit { fill: transparent; pointer-events: none; }
+  .loading-overlay { position: fixed; inset: 0; background: rgba(243, 234, 219, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; display: grid; place-items: center; opacity: 0; animation: fadeIn 0.32s ease-out forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .loading-card { text-align: center; max-width: 480px; padding: 32px; }
+  .loading-spinner { width: 56px; height: 56px; border: 2.5px solid rgba(58,46,31,0.13); border-top-color: #5c4a35; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 28px; }
+  .loading-line { font-family: "EB Garamond", serif; font-style: italic; font-size: 17px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; line-height: 1.55; }
+  .loading-line .target { font-family: "Noto Serif SC", serif; font-style: normal; font-weight: 600; font-size: 26px; opacity: 1; display: block; margin-top: 8px; letter-spacing: 0.1em; }
+  .loading-sub { margin-top: 24px; font-family: "EB Garamond", serif; font-size: 11px; opacity: 0.45; letter-spacing: 0.28em; text-transform: uppercase; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .drill-nav { margin-top: 28px; font-family: "Noto Serif SC", serif; font-size: 15px; letter-spacing: 0.06em; text-align: center; }
+  .drill-nav .label { font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; opacity: 0.5; margin-right: 12px; letter-spacing: 0.12em; }
+  .drill-nav a { color: var(--ink); text-decoration: none; opacity: 0.7; padding: 0 10px; border-right: 1px solid rgba(58,46,31,0.2); }
+  .drill-nav a:last-child { border-right: none; }
+  .drill-nav a:hover { opacity: 1; }
+  .drill-back { display: inline-block; margin-top: 28px; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .drill-back:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<a class="nav-back" href="./index.html">← Bitepedia</a>
+<div class="stage">
+  <img src="./_source/lanzhou-noodle.png" alt="面条" />
+  <svg viewBox="0 0 1672 941" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <text class="t-title" x="836.0" y="80.0" text-anchor="middle">一面九形</text>
+      <text class="t-title-en" x="836.0" y="116.0" text-anchor="middle">THE NINE LANZHOU NOODLES</text>
+      <path class="leader" d="M 600.0 350.0 L 650.0 270.0 L 700.0 270.0" />
+      <circle class="anchor" cx="600.0" cy="350.0" r="5" />
+      <text class="t-label" x="700.0" y="270.0" text-anchor="start">面团</text>
+      <text class="t-label-en" x="700.0" y="298.0" text-anchor="start">Dough</text>
+      <path class="leader" d="M 827.9 346.1 L 910.4 267.0 L 960.4 267.0" />
+      <circle class="anchor" cx="827.9" cy="346.1" r="5" />
+      <text class="t-label" x="960.4" y="267.0" text-anchor="start">毛细</text>
+      <text class="t-label-en" x="960.4" y="295.0" text-anchor="start">Mao Xi · Hair Thin</text>
+      <path class="leader" d="M 1093.0 357.7 L 1173.2 269.4 L 1223.2 269.4" />
+      <circle class="anchor" cx="1093.0" cy="357.7" r="5" />
+      <text class="t-label" x="1223.2" y="269.4" text-anchor="start">二细</text>
+      <text class="t-label-en" x="1223.2" y="297.4" text-anchor="start">Er Xi · Standard Round</text>
+      <path class="leader" d="M 600.0 550.0 L 650.0 470.0 L 700.0 470.0" />
+      <circle class="anchor" cx="600.0" cy="550.0" r="5" />
+      <text class="t-label" x="700.0" y="470.0" text-anchor="start">韭叶</text>
+      <text class="t-label-en" x="700.0" y="498.0" text-anchor="start">Jiu Ye · Leek Leaf</text>
+      <path class="leader" d="M 860.4 553.1 L 905.8 471.7 L 955.8 471.7" />
+      <circle class="anchor" cx="860.4" cy="553.1" r="5" />
+      <text class="t-label" x="955.8" y="471.7" text-anchor="start">薄宽</text>
+      <text class="t-label-en" x="955.8" y="499.7" text-anchor="start">Bo Leng · Thin Flat</text>
+      <path class="leader" d="M 1137.1 564.7 L 1187.1 478.6 L 1237.1 478.6" />
+      <circle class="anchor" cx="1137.1" cy="564.7" r="5" />
+      <text class="t-label" x="1237.1" y="478.6" text-anchor="start">大宽</text>
+      <text class="t-label-en" x="1237.1" y="506.6" text-anchor="start">Da Kuan · Wide Ribbon</text>
+      <path class="leader" d="M 600.0 750.0 L 719.7 634.5 L 769.7 634.5" />
+      <circle class="anchor" cx="600.0" cy="750.0" r="5" />
+      <text class="t-label" x="769.7" y="634.5" text-anchor="start">空心</text>
+      <text class="t-label-en" x="769.7" y="662.5" text-anchor="start">Kong Xin · Hollow Center</text>
+      <path class="leader" d="M 1076.7 722.8 L 1173.2 625.2 L 1223.2 625.2" />
+      <circle class="anchor" cx="1076.7" cy="722.8" r="5" />
+      <text class="t-label" x="1223.2" y="625.2" text-anchor="start">一线天</text>
+      <text class="t-label-en" x="1223.2" y="653.2" text-anchor="start">Yi Xian Tian · Single Strand</text>
+      <text class="t-footer" x="836.0" y="895.0" text-anchor="middle">九形一面 · 食客自取</text>
+      <text class="t-footer-en" x="836.0" y="908.5" text-anchor="middle">Nine shapes, one dough, shaped to taste</text>
+  </svg>
+  
+</div>
+<a class="drill-back" href="./lanzhou-main.html">← Back to 兰州牛肉面</a>
+
+</body>
+</html>

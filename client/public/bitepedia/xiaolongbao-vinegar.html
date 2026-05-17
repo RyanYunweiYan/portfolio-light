@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>镇江香醋 · Bitepedia</title>
+<meta property="og:title" content="镇江香醋 · Bitepedia" />
+<meta property="og:description" content="A bite-sized encyclopedia of food, visualized as vintage botanical specimen plates." />
+<meta property="og:image" content="./_source/xiaolongbao-vinegar.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink: #3a2e1f; --line: #5c4a35; --paper: #f3eadb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: "Noto Serif SC", serif; }
+  .t-title { font-family: "Noto Serif SC", serif; font-weight: 600; font-size: 56px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-title-en { font-family: "EB Garamond", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.22em; fill: var(--ink); text-transform: uppercase; }
+  .t-label { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 28px; letter-spacing: 0.04em; fill: var(--ink); }
+  .t-label-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 20px; fill: var(--ink); opacity: 0.78; }
+  .t-extra { font-family: "Noto Serif SC", serif; font-weight: 400; font-size: 24px; letter-spacing: 0.06em; fill: var(--ink); }
+  .t-extra-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .t-footer { font-family: "Noto Serif SC", serif; font-weight: 500; font-size: 22px; letter-spacing: 0.18em; fill: var(--ink); }
+  .t-footer-en { font-family: "EB Garamond", serif; font-style: italic; font-size: 18px; fill: var(--ink); opacity: 0.78; }
+  .leader { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .anchor { fill: var(--line); }
+
+  body { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px 48px; }
+  .nav-back { align-self: flex-start; max-width: 1400px; width: 100%; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; margin-bottom: 16px; text-transform: uppercase; }
+  .nav-back:hover { opacity: 1; }
+  .stage { position: relative; width: 100%; max-width: 1400px; aspect-ratio: 1672 / 941; box-shadow: 0 4px 24px rgba(58, 46, 31, 0.12); }
+  .stage img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .stage.interactive { cursor: pointer; touch-action: manipulation; }
+  .stage.interactive:hover { box-shadow: 0 8px 32px rgba(58, 46, 31, 0.22); }
+  .stage .hint { position: absolute; top: 12px; right: 12px; padding: 6px 12px; background: rgba(243, 234, 219, 0.85); backdrop-filter: blur(4px); border-radius: 999px; font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; pointer-events: none; }
+  .stage .ripple { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(92, 74, 53, 0.35); transform: translate(-50%, -50%) scale(0); animation: rippleOut 0.6s ease-out forwards; pointer-events: none; }
+  @keyframes rippleOut { to { transform: translate(-50%, -50%) scale(9); opacity: 0; } }
+  .stage .ripple-soft { background: rgba(92, 74, 53, 0.18); }
+  .hit { fill: transparent; pointer-events: none; }
+  .loading-overlay { position: fixed; inset: 0; background: rgba(243, 234, 219, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 100; display: grid; place-items: center; opacity: 0; animation: fadeIn 0.32s ease-out forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .loading-card { text-align: center; max-width: 480px; padding: 32px; }
+  .loading-spinner { width: 56px; height: 56px; border: 2.5px solid rgba(58,46,31,0.13); border-top-color: #5c4a35; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 28px; }
+  .loading-line { font-family: "EB Garamond", serif; font-style: italic; font-size: 17px; color: var(--ink); opacity: 0.75; letter-spacing: 0.04em; line-height: 1.55; }
+  .loading-line .target { font-family: "Noto Serif SC", serif; font-style: normal; font-weight: 600; font-size: 26px; opacity: 1; display: block; margin-top: 8px; letter-spacing: 0.1em; }
+  .loading-sub { margin-top: 24px; font-family: "EB Garamond", serif; font-size: 11px; opacity: 0.45; letter-spacing: 0.28em; text-transform: uppercase; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .drill-nav { margin-top: 28px; font-family: "Noto Serif SC", serif; font-size: 15px; letter-spacing: 0.06em; text-align: center; }
+  .drill-nav .label { font-family: "EB Garamond", serif; font-style: italic; font-size: 13px; opacity: 0.5; margin-right: 12px; letter-spacing: 0.12em; }
+  .drill-nav a { color: var(--ink); text-decoration: none; opacity: 0.7; padding: 0 10px; border-right: 1px solid rgba(58,46,31,0.2); }
+  .drill-nav a:last-child { border-right: none; }
+  .drill-nav a:hover { opacity: 1; }
+  .drill-back { display: inline-block; margin-top: 28px; color: var(--ink); opacity: 0.55; text-decoration: none; font-family: "EB Garamond", serif; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .drill-back:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<a class="nav-back" href="./index.html">← Bitepedia</a>
+<div class="stage">
+  <img src="./_source/xiaolongbao-vinegar.png" alt="镇江香醋" />
+  <svg viewBox="0 0 1672 941" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <text class="t-title" x="836.0" y="78.0" text-anchor="middle">镇江香醋</text>
+      <text class="t-title-en" x="836.0" y="116.0" text-anchor="middle">THE PERFECT DIP</text>
+      <path class="leader" d="M 260.0 500.0 L 140.0 335.0 L 90.0 335.0" />
+      <circle class="anchor" cx="260.0" cy="500.0" r="5" />
+      <text class="t-label" x="90.0" y="335.0" text-anchor="start">陶坛发酵</text>
+      <text class="t-label-en" x="90.0" y="363.0" text-anchor="start">Fermented in Clay Urns</text>
+      <path class="leader" d="M 739.5 453.1 L 463.9 194.9 L 413.9 194.9" />
+      <circle class="anchor" cx="739.5" cy="453.1" r="5" />
+      <text class="t-label" x="413.9" y="194.9" text-anchor="start">镇江香醋</text>
+      <text class="t-label-en" x="413.9" y="222.9" text-anchor="start">Chinkiang Vinegar · Aged glutinous rice base</text>
+      <path class="leader" d="M 881.3 488.0 L 1119.7 257.7 L 1169.7 257.7" />
+      <circle class="anchor" cx="881.3" cy="488.0" r="5" />
+      <text class="t-label" x="1169.7" y="257.7" text-anchor="start">嫩姜丝</text>
+      <text class="t-label-en" x="1169.7" y="285.7" text-anchor="start">Young Ginger · Julienned to cut richness</text>
+      <path class="leader" d="M 1427.8 620.5 L 1426.7 762.4 L 1376.7 762.4" />
+      <circle class="anchor" cx="1427.8" cy="620.5" r="5" />
+      <text class="t-label" x="1376.7" y="762.4" text-anchor="end">醋酸与氨基酸</text>
+      <text class="t-label-en" x="1376.7" y="790.4" text-anchor="end">Acetic Acid &amp;amp; Amino Acids</text>
+      <text class="t-footer" x="865.1" y="874.0" text-anchor="middle">酸香解腻 · 佐小笼之鲜</text>
+      <text class="t-footer-en" x="865.1" y="902.0" text-anchor="middle">Cuts the richness, lifts the pork</text>
+  </svg>
+  
+</div>
+<a class="drill-back" href="./xiaolongbao-main.html">← Back to 小笼包</a>
+
+</body>
+</html>
