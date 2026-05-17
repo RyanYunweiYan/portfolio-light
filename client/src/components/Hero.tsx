@@ -189,12 +189,12 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.0, ease: EASE.smooth }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-x-1 md:gap-x-2 gap-y-5 max-w-[920px] mx-auto mb-8"
+                className="grid grid-cols-3 gap-x-1 md:gap-x-2 gap-y-5 max-w-[920px] mx-auto mb-8"
               >
                 {METRICS.map((metric, i) => (
                   <div
                     key={i}
-                    className={`text-center px-2 md:px-3 py-0.5 ${i > 0 ? "md:border-l" : ""} ${i === 2 ? "sm:border-l md:border-l" : ""}`}
+                    className={`text-center px-2 md:px-3 py-0.5 ${i > 0 ? "border-l" : ""}`}
                     style={{ borderColor: "rgba(29,29,31,0.10)" }}
                   >
                     <span
@@ -208,7 +208,7 @@ export default function Hero() {
                       {metric.value}
                     </span>
                     <span
-                      className="block text-[10px] md:text-[11px] font-medium uppercase tracking-[0.05em] mt-1.5 whitespace-nowrap"
+                      className="block text-[10px] md:text-[11px] font-medium uppercase tracking-[0.05em] mt-1.5 md:whitespace-nowrap leading-tight"
                       style={{ color: "rgba(29,29,31,0.45)" }}
                     >
                       {t(metric.label)}

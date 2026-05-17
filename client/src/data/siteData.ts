@@ -56,11 +56,6 @@ export const METRICS = [
     label: { en: "CES International Users", zh: "CES 海外用户" } as BiText,
     description: { en: "Full-stack exhibition app built independently", zh: "独立开发的展会全栈应用" } as BiText,
   },
-  {
-    value: "$400+",
-    label: { en: "Monthly AI Investment", zh: "每月 AI 工具投入" } as BiText,
-    description: { en: "Claude Max, Cursor, Manus Pro & more", zh: "Claude Max、Cursor、Manus Pro 等" } as BiText,
-  },
 ];
 
 // ── Projects ─────────────────────────────────────────────────
@@ -246,8 +241,8 @@ export const CREATIVE_WORKS: CreativeWork[] = [
     type: "video",
     title: { en: "La La Land 10th Anniversary — AI Film", zh: "《爱乐之城》十周年 — AI 影片" },
     description: {
-      en: "Collaborated with Jimeng (ByteDance's AI video platform) on the La La Land 10th anniversary project. Created a promotional film entirely using AI video generation.",
-      zh: "与即梦合作参与《爱乐之城》十周年项目，使用 AI 视频生成技术完成宣传片制作。",
+      en: "Created a promotional film for the La La Land 10th anniversary project, entirely with AI video generation.",
+      zh: "为《爱乐之城》十周年项目创作宣传片，全程使用 AI 视频生成技术。",
     },
     embedUrl: "/videos/lalaland.mp4",
     date: "2025",
@@ -309,14 +304,14 @@ export const CREATIVE_WORKS: CreativeWork[] = [
 
 export const AI_STACK = [
   {
+    category: "Build",
+    description: { en: "Development & automation", zh: "开发与自动化" } as BiText,
+    tools: ["Claude Code", "Codex", "Claude Cowork", "Claude Design", "Cursor", "Lovable", "Manus Pro", "Firecrawl"],
+  },
+  {
     category: "Think",
     description: { en: "Research & reasoning", zh: "研究与推理" } as BiText,
     tools: ["Claude Max", "ChatGPT Pro", "Gemini Pro", "Grok", "NotebookLM", "Plaud"],
-  },
-  {
-    category: "Build",
-    description: { en: "Development & automation", zh: "开发与自动化" } as BiText,
-    tools: ["Claude Code", "Codex", "Cursor", "Lovable", "Manus Pro", "Firecrawl"],
   },
   {
     category: "Create",
