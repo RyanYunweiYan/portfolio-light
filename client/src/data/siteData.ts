@@ -21,15 +21,15 @@ export const PROFILE = {
   } as BiText,
   bio: {
     en: [
-      "AI Product Manager leading the engineering-grade delivery of production AI products — Agent architecture, memory systems, Prompt engineering, and RAG knowledge bases. 5 years as a PM, owning multiple products from 0 to launch across AI wearables, IoT, and enterprise networking.",
+      "AI Product Manager who continuously tracks the AI frontier and translates it into product value — with deep focus on production LLM applications and Agent system delivery. 5 years as a PM, owning multiple products from 0 to launch across AI wearables, IoT, and enterprise networking.",
       "60+ hours per week hands-on in Claude Code. Independently shipped 20+ AI-powered products — web apps, iOS apps, WeChat mini-programs — including a CES exhibition app that served 3,000+ international users.",
-      "I believe a PM's core capability in the AI era is to build, not to write. I codify high-frequency workflows into reusable, standardized Skills on a self-developed Harness Engineering framework — forming a self-iterating workflow loop. Core modules open-sourced on GitHub.",
+      "A PM's core capability in the AI era is to build, not to write. I codify high-frequency workflows into reusable, standardized Skills on a self-developed Harness Engineering framework — forming a self-iterating workflow loop. Core modules open-sourced on GitHub.",
       "M.S. in Information Technology & Management from UT Austin (program ranked Top 3 in the U.S.). Working with large language models since GPT-3, shipping AI products through every major wave since. I break problems down from first principles, draw clear lines between what humans should do and what AI should do, and maximize leverage at every step.",
     ],
     zh: [
-      "AI 产品经理，主导 Agent 架构、记忆系统、Prompt 工程与 RAG 等 AI 产品的工程化落地。5 年产品经理经验，在 AI 穿戴、IoT、企业级网络等领域主导多个产品从 0 到 1 的上市交付。",
+      "AI 产品经理，持续跟踪一线 AI 演进并转化为产品价值，深耕 LLM 应用与 Agent 系统的工程化落地。5 年产品经理经验，在 AI 穿戴、IoT、企业级网络等领域主导多个产品从 0 到 1 的上市交付。",
       "Claude Code 周均 60+ 小时，独立交付 20+ AI 驱动数字产品（Web 应用、iOS 应用、微信小程序等），其中 CES 展会应用服务 3,000+ 海外用户。",
-      "相信 AI 时代 PM 的核心能力是 build，而非 write。基于自建的 Harness Engineering 框架，将工作中高频复用的流程沉淀为标准化 Skills，形成自主迭代的工作流闭环，核心模块已开源。",
+      "AI 时代 PM 的核心能力是 build，而非 write。基于自建的 Harness Engineering 框架，将工作中高频复用的流程沉淀为标准化 Skills，形成自主迭代的工作流闭环，核心模块已开源。",
       "UT Austin 信息技术与管理硕士（专业全美 Top 3）。从 GPT-3 开始接触大语言模型，持续深耕 AI 产品实践，经历多轮技术迭代。善于从第一性原理拆解问题，精准划定人机协作边界，最大化 AI 杠杆效率。",
     ],
   } as BiTextArray,
@@ -336,13 +336,13 @@ export const EXPERIENCE = [
     highlights: {
       en: [
         "Product Line Lead: Led two product lines (smart ring & smart watch) from 0 to 1, owning product definition and AI capability development; coordinated cross-functional teams across algorithms and design; as product Owner, accountable for end-to-end delivery from kickoff to launch. Represented the company at CES and CMEF with on-site product launch presentations.",
-        "AI Product Delivery: Led the 0-to-1 definition and architecture of the product's AI Agent, covering both Reactive AI (on-demand health consultation) and Proactive AI Agent; built an Agent memory system that continuously accumulates user health context to enable personalized, proactive health companionship; owned Prompt engineering strategy and multi-turn dialogue experience standards; built a RAG knowledge base with a layered chunking strategy to improve retrieval precision.",
+        "AI Agent Product Delivery: Led the 0-to-1 definition and architecture of the product's AI Agent. Built an Agent Harness implementing a 5-layer Agent system (orchestration / agent core / tools / data / safety & eval); designed multi-modal orchestration strategies across Workflow, Skill, and Agent-as-Tool — selecting per scenario to lift task-completion quality while guaranteeing Agent reliability. Built a 3-tier eval system (code scan / LLM-as-Judge / human spot-check) and an Eval-Driven iteration loop that supports continuous post-launch improvement.",
         "AI Workflow Engineering: Using the DHF regulatory documentation system as a reference case, orchestrated multi-Agent parallel exploration in Claude Code to efficiently converge on optimal solutions; designed a Sub-Agent cross-verification workflow to mitigate hallucination risk; applied Context Engineering to keep context under 250K tokens. Compressed per-document production time from 3 business days to 30 minutes, with first-pass approval at system review.",
         "Personal Agent Collaboration System: Built on the self-developed Harness Engineering framework, codified high-frequency workflows into standardized Skills covering documentation, software development, and business decision-making — forming a self-iterating workflow loop. Core modules open-sourced on GitHub with ongoing contributions to the community.",
       ],
       zh: [
         "产品线负责人：0 到 1 主导智能戒指、智能手表两条产品线的定义与产品 AI 能力建设，统筹算法、设计等跨职能团队协同推进，作为产品 Owner 负责从立项到上市的完整交付；代表公司参加 CES、CMEF 等国际展会并现场发布演讲。",
-        "AI 产品能力落地：主导 AI Agent 从 0 到 1 的定义与架构设计，包含 Reactive AI（响应式健康咨询）与 Proactive AI Agent；构建 Agent 记忆系统，持续积累用户健康上下文，实现千人千面的主动式健康陪伴。主导 Prompt 工程策略与多轮对话体验规范；搭建 RAG 知识库，设计分层 chunking 策略提升检索精准度。",
+        "AI Agent 产品能力落地：主导 AI Agent 从 0 到 1 的定义与架构设计，构建 Agent Harness，实现五层 Agent 系统设计（调度 / Agent 核心 / 工具 / 数据 / 安全与评测）；设计 Workflow / Skill / Agent as Tool 多形态编排策略，根据场景特征选择编排策略，在确保 Agent Reliability 的前提下提升任务完成质量；搭建三层评测体系（代码扫描 / LLM-as-Judge / 人工抽检）+ Eval-Driven 迭代机制，支撑 Agent 上线后持续优化。",
         "AI 工作流搭建：以 DHF 法规文档系统为例，使用 Claude Code 多 Agent 并行探索方案，高效收敛至最优路径；制定 Sub Agent 交叉验证流程降低模型幻觉风险；Context Engineering 将上下文控制在 250K token 以下，防止注意力衰减。单份文档产出时间从 3 个工作日压缩至半小时，一次性通过体系评审。",
         "个人 Agent 协作系统：基于 Harness Engineering 框架，将工作中高频复用的流程沉淀为标准化 Skills，覆盖文档类工作、软件开发、商业决策等场景，形成自主迭代的工作流闭环。核心模块已开源，持续向开源社区输出实践经验。",
       ],
@@ -373,12 +373,12 @@ export const EXPERIENCE = [
       en: [
         "Built an AI customer service system using LLMs, enabling multi-turn conversations that understand customer needs, automatically configure and compare solutions, and close the full consulting-to-ordering loop. Optimized knowledge base retrieval with RAG architecture. Reduced conversation steps by 25% and improved conversion rate by nearly 30%.",
         "Owned the AI computing network portfolio, delivering AI Fabric network solutions to enterprise clients.",
-        "Led delivery of 3 major data center projects — Heathrow Airport network upgrade, Siemens data center, and TSMC network upgrade — aligning engineering, procurement, and client stakeholders to meet deadlines. Total project value exceeded $20M.",
+        "Owned delivery of 3 large-scale network projects — Heathrow Airport, Siemens, and TSMC — with combined value exceeding $20M USD.",
       ],
       zh: [
         "基于大语言模型构建 AI 客服系统，支持多轮对话，实现客户需求智能理解、方案自动配置与对比评估，完成从咨询到下单的服务闭环；采用 RAG 架构优化知识库检索。内测阶段对话轮次减少 25%，转化率提升近 30%。",
         "聚焦 AI 智算网络方向，面向企业级客户提供 AI Fabric 网络解决方案。",
-        "作为项目经理主导完成 3 个大型数据中心项目——英国希思罗机场网络升级、西门子数据中心、台积电网络升级——协调跨职能团队高效协作，确保项目按时交付，项目总金额超 2000 万美金。",
+        "主导交付希思罗机场、西门子、台积电 3 个大型网络项目，总金额超 2000 万美金。",
       ],
     } as BiTextArray,
   },
@@ -457,8 +457,8 @@ export const SOCIAL_LINKS = [
 export const SITE_META = {
   title: { en: "Ryan Yan — AI Product Manager & Builder", zh: "Ryan Yan — AI 产品经理 & 独立开发者" } as BiText,
   description: {
-    en: "AI Product Manager leading engineering-grade delivery of Agent architecture, memory systems, and RAG. 60+ hrs/week on Claude Code. 20+ AI products shipped independently. M.S. from UT Austin.",
-    zh: "AI 产品经理，主导 Agent 架构、记忆系统、RAG 等 AI 产品的工程化落地。Claude Code 周均 60+ 小时，独立交付 20+ AI 产品。UT Austin 硕士。",
+    en: "AI Product Manager continuously tracking the AI frontier and shipping production LLM applications and Agent systems. 60+ hrs/week on Claude Code. 20+ AI products shipped independently. M.S. from UT Austin.",
+    zh: "AI 产品经理，持续跟踪一线 AI 演进并转化为产品价值，深耕 LLM 应用与 Agent 系统落地。Claude Code 周均 60+ 小时，独立交付 20+ AI 产品。UT Austin 硕士。",
   } as BiText,
   ogImage: "/og-image.png",
 };
