@@ -335,13 +335,13 @@ export const EXPERIENCE = [
     location: "Nanjing, China",
     highlights: {
       en: [
-        "Product Line Lead: Led two product lines (smart ring & smart watch) from 0 to 1, owning product definition and AI capability development; coordinated cross-functional teams across algorithms and design; as product Owner, accountable for end-to-end delivery from kickoff to launch. Represented the company at CES and CMEF with on-site product launch presentations.",
+        "Product Lead: Led AI Agent product implementation; independently owned the smart ring product line end-to-end; defined the AI wearables product matrix of 5 products; represented the company at CES and CMEF with software and hardware product launches.",
         "AI Agent Product Delivery: Led the 0-to-1 definition and architecture of the product's AI Agent. Built an Agent Harness implementing a 5-layer Agent system (orchestration / agent core / tools / data / safety & eval); designed multi-modal orchestration strategies across Workflow, Skill, and Agent-as-Tool — selecting per scenario to lift task-completion quality while guaranteeing Agent reliability. Built a 3-tier eval system (code scan / LLM-as-Judge / human spot-check) and an Eval-Driven iteration loop that supports continuous post-launch improvement.",
         "AI Workflow Engineering: Using the DHF regulatory documentation system as a reference case, orchestrated multi-Agent parallel exploration in Claude Code to efficiently converge on optimal solutions; designed a Sub-Agent cross-verification workflow to mitigate hallucination risk; applied Context Engineering to keep context under 250K tokens. Compressed per-document production time from 3 business days to 30 minutes, with first-pass approval at system review.",
         "Personal Agent Collaboration System: Built on the self-developed Harness Engineering framework, codified high-frequency workflows into standardized Skills covering documentation, software development, and business decision-making — forming a self-iterating workflow loop. Core modules open-sourced on GitHub with ongoing contributions to the community.",
       ],
       zh: [
-        "产品线负责人：0 到 1 主导智能戒指、智能手表两条产品线的定义与产品 AI 能力建设，统筹算法、设计等跨职能团队协同推进，作为产品 Owner 负责从立项到上市的完整交付；代表公司参加 CES、CMEF 等国际展会并现场发布演讲。",
+        "产品负责人：主导 AI Agent 产品落地；独立 own 智能戒指产品线端到端交付；定义 AI 穿戴产品矩阵，包含 5 款产品；代表公司参加 CES、CMEF 等国际展会做软硬件产品发布。",
         "AI Agent 产品能力落地：主导 AI Agent 从 0 到 1 的定义与架构设计，构建 Agent Harness，实现五层 Agent 系统设计（调度 / Agent 核心 / 工具 / 数据 / 安全与评测）；设计 Workflow / Skill / Agent as Tool 多形态编排策略，根据场景特征选择编排策略，在确保 Agent Reliability 的前提下提升任务完成质量；搭建三层评测体系（代码扫描 / LLM-as-Judge / 人工抽检）+ Eval-Driven 迭代机制，支撑 Agent 上线后持续优化。",
         "AI 工作流搭建：以 DHF 法规文档系统为例，使用 Claude Code 多 Agent 并行探索方案，高效收敛至最优路径；制定 Sub Agent 交叉验证流程降低模型幻觉风险；Context Engineering 将上下文控制在 250K token 以下，防止注意力衰减。单份文档产出时间从 3 个工作日压缩至半小时，一次性通过体系评审。",
         "个人 Agent 协作系统：基于 Harness Engineering 框架，将工作中高频复用的流程沉淀为标准化 Skills，覆盖文档类工作、软件开发、商业决策等场景，形成自主迭代的工作流闭环。核心模块已开源，持续向开源社区输出实践经验。",
