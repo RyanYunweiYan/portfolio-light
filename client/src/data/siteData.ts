@@ -330,18 +330,18 @@ export const AI_STACK = [
 export const EXPERIENCE = [
   {
     company: "Yuwell Medical (鱼跃医疗)",
-    role: { en: "AI Wearable Product Manager", zh: "AI 穿戴产品经理" } as BiText,
+    role: { en: "AI Product Manager", zh: "AI 产品经理" } as BiText,
     period: "2025.04 – Present",
     location: "Nanjing, China",
     highlights: {
       en: [
-        "Product Lead: Led AI Agent product implementation; independently owned the smart ring product line end-to-end; defined the AI wearables product matrix of 5 products; represented the company at CES and CMEF with software and hardware product launches.",
+        "Product Lead: Led AI Agent product implementation; independently owned the smart ring product end-to-end, from definition through launch; defined the AI health product matrix of 5 products; represented the company at CES and CMEF for product launches.",
         "AI Agent Product Delivery: Led the 0-to-1 definition and architecture of the product's AI Agent. Built an Agent Harness implementing a 5-layer Agent system (orchestration / agent core / tools / data / safety & eval); designed multi-modal orchestration strategies across Workflow, Skill, and Agent-as-Tool — selecting per scenario to lift task-completion quality while guaranteeing Agent reliability. Built a 3-tier eval system (code scan / LLM-as-Judge / human spot-check) and an Eval-Driven iteration loop that supports continuous post-launch improvement.",
         "AI Workflow Engineering: Using the DHF regulatory documentation system as a reference case, orchestrated multi-Agent parallel exploration in Claude Code to efficiently converge on optimal solutions; designed a Sub-Agent cross-verification workflow to mitigate hallucination risk; applied Context Engineering to keep context under 250K tokens. Compressed per-document production time from 3 business days to 30 minutes, with first-pass approval at system review.",
         "Personal Agent Collaboration System: Built on the self-developed Harness Engineering framework, codified high-frequency workflows into standardized Skills covering documentation, software development, and business decision-making — forming a self-iterating workflow loop. Core modules open-sourced on GitHub with ongoing contributions to the community.",
       ],
       zh: [
-        "产品负责人：主导 AI Agent 产品落地；独立 own 智能戒指产品线端到端交付；定义 AI 穿戴产品矩阵，包含 5 款产品；代表公司参加 CES、CMEF 等国际展会做软硬件产品发布。",
+        "产品负责人：主导 AI Agent 产品落地；独立 own 智能戒指产品从定义到上市的端到端交付；定义 AI 健康产品矩阵，包含 5 款产品；代表公司参加 CES、CMEF 等国际展会做产品发布。",
         "AI Agent 产品能力落地：主导 AI Agent 从 0 到 1 的定义与架构设计，构建 Agent Harness，实现五层 Agent 系统设计（调度 / Agent 核心 / 工具 / 数据 / 安全与评测）；设计 Workflow / Skill / Agent as Tool 多形态编排策略，根据场景特征选择编排策略，在确保 Agent Reliability 的前提下提升任务完成质量；搭建三层评测体系（代码扫描 / LLM-as-Judge / 人工抽检）+ Eval-Driven 迭代机制，支撑 Agent 上线后持续优化。",
         "AI 工作流搭建：以 DHF 法规文档系统为例，使用 Claude Code 多 Agent 并行探索方案，高效收敛至最优路径；制定 Sub Agent 交叉验证流程降低模型幻觉风险；Context Engineering 将上下文控制在 250K token 以下，防止注意力衰减。单份文档产出时间从 3 个工作日压缩至半小时，一次性通过体系评审。",
         "个人 Agent 协作系统：基于 Harness Engineering 框架，将工作中高频复用的流程沉淀为标准化 Skills，覆盖文档类工作、软件开发、商业决策等场景，形成自主迭代的工作流闭环。核心模块已开源，持续向开源社区输出实践经验。",
@@ -355,12 +355,12 @@ export const EXPERIENCE = [
     location: "Hangzhou, China",
     highlights: {
       en: [
-        "Analyzed user data on lighting effects to uncover scene-based preference patterns, then designed and shipped an end-to-end LLM-powered smart recommendation system. Used AI to auto-generate lighting-effect code, replacing the manual development pipeline and expanding the effect library. Increased average app session duration by 30%.",
-        "Took the GCS Surround Speaker from concept to global crowdfunding launch, aligning hardware, firmware, and marketing teams. Ranked #1 in Audio on Indiegogo, surpassing its funding goal by 755%.",
+        "AI Capability Delivery: Designed a personalized recommendation strategy from user behavior data, defining the recommendation scenarios and recall logic; leveraged LLMs to auto-generate lighting-effect code, expanding the content library. Lifted average app session duration by 30%.",
+        "Overseas Crowdfunding Product: Owned the GCS smart hardware end-to-end, from definition to commercialization. Ranked #1 in its category on Indiegogo (North America) during pre-sale, surpassing the funding goal by 755%.",
       ],
       zh: [
-        "AI 驱动产品创新：使用 LLM 分析用户灯效数据，挖掘场景偏好规律，设计并落地智能推荐系统；用 AI 自动生成灯效代码替代传统开发流程，拓展灯效库内容。App 平均使用时长提升 30%。",
-        "主导从需求分析到产品商业化的全流程，协调跨职能团队高效协作，成功交付「GCS 环绕立体音响」项目。产品在预售阶段登顶 Indiegogo 众筹平台 Audio 类目第一，超额 755% 达成目标。",
+        "AI 能力落地：基于用户行为数据设计个性化推荐策略，定义推荐场景与召回逻辑；LLM 自动生成灯效代码拓展内容库。App 平均使用时长提升 30%。",
+        "海外众筹产品：主导 GCS 智能硬件产品从定义到商业化的全流程，产品预售阶段登顶北美 Indiegogo 平台类目第一，超额 755% 达成目标。",
       ],
     } as BiTextArray,
   },
