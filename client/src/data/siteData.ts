@@ -16,12 +16,12 @@ export const PROFILE = {
   nameCN: "严韫玮",
   title: { en: "AI Product Manager & Builder", zh: "AI 产品经理 & 独立开发者" } as BiText,
   tagline: {
-    en: "In the AI era, a PM's core capability is to build — not to write.",
+    en: "A PM's core capability in the AI era is to build, not to write.",
     zh: "AI 时代，PM 的核心能力是 build，而非 write。",
   } as BiText,
   bio: {
     en: [
-      "AI Product Manager who continuously tracks the AI frontier and translates it into product value — with deep focus on production LLM applications and Agent system delivery. 5 years as a PM, owning multiple products from 0 to launch across AI wearables, IoT, and enterprise networking.",
+      "AI Product Manager tracking frontier AI advances and turning them into product value, with deep expertise shipping LLM applications and Agent systems. 5 years as a PM, owning multiple products from 0 to launch across AI wearables, IoT, and enterprise networking.",
       "60+ hours per week hands-on in Claude Code. Independently shipped 20+ AI-powered products — web apps, iOS apps, WeChat mini-programs — including a CES exhibition app that served 3,000+ international users.",
       "A PM's core capability in the AI era is to build, not to write. I codify high-frequency workflows into reusable, standardized Skills on a self-developed Harness Engineering framework — forming a self-iterating workflow loop. Core modules open-sourced on GitHub.",
       "M.S. in Information Technology & Management from UT Austin (program ranked Top 3 in the U.S.). Working with large language models since GPT-3, shipping AI products through every major wave since. I break problems down from first principles, draw clear lines between what humans should do and what AI should do, and maximize leverage at every step.",
@@ -335,10 +335,10 @@ export const EXPERIENCE = [
     location: "Nanjing, China",
     highlights: {
       en: [
-        "Product Lead: Led AI Agent product implementation; independently owned the smart ring product end-to-end, from definition through launch; defined the AI health product matrix of 5 products; represented the company at CES and CMEF for product launches.",
-        "AI Agent Product Delivery: Led the 0-to-1 definition and architecture of the product's AI Agent. Built an Agent Harness implementing a 5-layer Agent system (orchestration / agent core / tools / data / safety & eval); designed multi-modal orchestration strategies across Workflow, Skill, and Agent-as-Tool — selecting per scenario to lift task-completion quality while guaranteeing Agent reliability. Built a 3-tier eval system (code scan / LLM-as-Judge / human spot-check) and an Eval-Driven iteration loop that supports continuous post-launch improvement.",
-        "AI Workflow Engineering: Using the DHF regulatory documentation system as a reference case, orchestrated multi-Agent parallel exploration in Claude Code to efficiently converge on optimal solutions; designed a Sub-Agent cross-verification workflow to mitigate hallucination risk; applied Context Engineering to keep context under 250K tokens. Compressed per-document production time from 3 business days to 30 minutes, with first-pass approval at system review.",
-        "Personal Agent Collaboration System: Built on the self-developed Harness Engineering framework, codified high-frequency workflows into standardized Skills covering documentation, software development, and business decision-making — forming a self-iterating workflow loop. Core modules open-sourced on GitHub with ongoing contributions to the community.",
+        "Product Line Lead: Drove end-to-end delivery of AI Agent products; sole owner of the Smart Ring from definition to launch; defined the AI health product portfolio covering 5 products; represented the company at CES and CMEF with on-site product launch presentations.",
+        "AI Agent Product Delivery: Led 0-to-1 definition and architecture of the AI Agent system; built Agent Harness as a five-layer Agent architecture (orchestration / Agent core / tools / data / safety & evaluation); designed multi-pattern orchestration across Workflow / Skill / Agent-as-Tool, selecting the right pattern per scenario to lift task quality while preserving Agent reliability; established a three-tier evaluation system (code scanning / LLM-as-Judge / human spot-check) and an Eval-Driven iteration loop to keep the Agent improving post-launch.",
+        "AI Workflow Engineering: Using the DHF regulatory documentation system as a reference case, orchestrated multi-Agent parallel exploration in Claude Code to efficiently converge on optimal solutions; designed a Sub-Agent cross-verification workflow to mitigate model hallucination risk; applied Context Engineering to keep context under 250K tokens and prevent attention decay. Compressed per-document production time from 3 business days to 30 minutes, with first-pass approval at system review.",
+        "Personal Agent Collaboration System: Built on the self-developed Harness Engineering framework, codified high-frequency workflows into standardized Skills covering documentation, software development, and business decision-making, forming a self-iterating workflow loop. Core modules open-sourced on GitHub with ongoing contributions to the community.",
       ],
       zh: [
         "产品负责人：主导 AI Agent 产品落地；独立 own 智能戒指产品从定义到上市的端到端交付；定义 AI 健康产品矩阵，包含 5 款产品；代表公司参加 CES、CMEF 等国际展会做产品发布。",
@@ -355,8 +355,8 @@ export const EXPERIENCE = [
     location: "Hangzhou, China",
     highlights: {
       en: [
-        "AI Capability Delivery: Designed a personalized recommendation strategy from user behavior data, defining the recommendation scenarios and recall logic; leveraged LLMs to auto-generate lighting-effect code, expanding the content library. Lifted average app session duration by 30%.",
-        "Overseas Crowdfunding Product: Owned the GCS smart hardware end-to-end, from definition to commercialization. Ranked #1 in its category on Indiegogo (North America) during pre-sale, surpassing the funding goal by 755%.",
+        "AI-Driven Product Innovation: Designed personalized recommendation strategies based on user behavior data, defining recommendation scenarios and recall logic; used LLMs to auto-generate lighting-effect code and expand the content library. Boosted average app session duration by 30%.",
+        "Overseas Crowdfunding Product: Owned the end-to-end commercialization of the GCS smart hardware product from definition to launch. Ranked #1 in its category on Indiegogo (North America) during pre-sale, exceeding the funding target by 755%.",
       ],
       zh: [
         "AI 能力落地：基于用户行为数据设计个性化推荐策略，定义推荐场景与召回逻辑；LLM 自动生成灯效代码拓展内容库。App 平均使用时长提升 30%。",
@@ -371,9 +371,9 @@ export const EXPERIENCE = [
     location: "Beijing, China",
     highlights: {
       en: [
-        "Built an AI customer service system using LLMs, enabling multi-turn conversations that understand customer needs, automatically configure and compare solutions, and close the full consulting-to-ordering loop. Optimized knowledge base retrieval with RAG architecture. Reduced conversation steps by 25% and improved conversion rate by nearly 30%.",
-        "Owned the AI computing network portfolio, delivering AI Fabric network solutions to enterprise clients.",
-        "Owned delivery of 3 large-scale network projects — Heathrow Airport, Siemens, and TSMC — with combined value exceeding $20M USD.",
+        "AI Chatbot: Built an LLM-powered customer service system supporting multi-turn dialogue — enabling intelligent needs understanding, automated solution configuration and comparison, and full service closure from inquiry to order; optimized knowledge base retrieval with a RAG architecture. Reduced dialogue turns by 25% and lifted conversion by ~30% in beta.",
+        "Product Focus: Focused on AI compute networking, delivering AI Fabric network solutions for enterprise clients.",
+        "Project Management: Led delivery of 3 large-scale network projects (Heathrow Airport, Siemens, TSMC), with combined contract value exceeding $20M USD.",
       ],
       zh: [
         "基于大语言模型构建 AI 客服系统，支持多轮对话，实现客户需求智能理解、方案自动配置与对比评估，完成从咨询到下单的服务闭环；采用 RAG 架构优化知识库检索。内测阶段对话轮次减少 25%，转化率提升近 30%。",
@@ -457,7 +457,7 @@ export const SOCIAL_LINKS = [
 export const SITE_META = {
   title: { en: "Ryan Yan — AI Product Manager & Builder", zh: "Ryan Yan — AI 产品经理 & 独立开发者" } as BiText,
   description: {
-    en: "AI Product Manager continuously tracking the AI frontier and shipping production LLM applications and Agent systems. 60+ hrs/week on Claude Code. 20+ AI products shipped independently. M.S. from UT Austin.",
+    en: "AI Product Manager tracking frontier AI advances and turning them into product value, with deep expertise shipping LLM applications and Agent systems. 60+ hrs/week on Claude Code. 20+ AI products shipped independently. M.S. from UT Austin.",
     zh: "AI 产品经理，持续跟踪一线 AI 演进并转化为产品价值，深耕 LLM 应用与 Agent 系统落地。Claude Code 周均 60+ 小时，独立交付 20+ AI 产品。UT Austin 硕士。",
   } as BiText,
   ogImage: "/og-image.png",
