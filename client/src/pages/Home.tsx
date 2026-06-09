@@ -15,6 +15,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const About = lazy(() => import("@/components/About"));
 const Projects = lazy(() => import("@/components/Projects"));
 const BitepediaSection = lazy(() => import("@/components/BitepediaSection"));
+const AthenaSection = lazy(() => import("@/components/AthenaSection"));
 const ContentSection = lazy(() => import("@/components/Content"));
 const AIStack = lazy(() => import("@/components/AIStack"));
 const Contact = lazy(() => import("@/components/Contact"));
@@ -79,6 +80,7 @@ export default function Home() {
       }>
         <About />
         <BitepediaSection />
+        <AthenaSection />
         <Projects />
         <ContentSection />
         <AIStack />
