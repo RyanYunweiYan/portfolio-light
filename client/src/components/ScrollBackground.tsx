@@ -13,21 +13,20 @@ export default function ScrollBackground() {
 
   useEffect(() => {
     let rafId = 0;
-    let cachedCreativeTop = 0;
-
-    const updateCreativeTop = () => {
-      const el = document.getElementById("creative");
-      if (el) cachedCreativeTop = el.getBoundingClientRect().top + window.scrollY;
-    };
 
     const handleScroll = () => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        if (!cachedCreativeTop) return;
+        // Read live each frame — the Creative section is lazy-loaded, so a
+        // mount-time cached offset is stale (it doesn't exist yet) and layout
+        // shifts as other sections hydrate. Same per-frame cost as Navbar.
+        const el = document.getElementById("creative");
+        if (!el) return;
+        const creativeTop = el.getBoundingClientRect().top + window.scrollY;
 
         const vh = window.innerHeight;
-        const gradientStart = cachedCreativeTop - vh * 1.6;
-        const gradientEnd = cachedCreativeTop - vh;
+        const gradientStart = creativeTop - vh * 1.6;
+        const gradientEnd = creativeTop - vh;
         const scrollY = window.scrollY;
 
         if (scrollY < gradientStart) {
@@ -43,18 +42,12 @@ export default function ScrollBackground() {
       });
     };
 
-    const handleResize = () => {
-      updateCreativeTop();
-      handleScroll();
-    };
-
-    updateCreativeTop();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleScroll);
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleScroll);
       cancelAnimationFrame(rafId);
     };
   }, []);

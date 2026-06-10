@@ -159,6 +159,16 @@ html {
   }
 }
 
+/* The scroll-driven background lives on a fixed -z-10 layer (ScrollBackground).
+   body's opaque background would paint over it, so the page base color moves
+   up to <html> (the canvas) and body stays transparent. */
+html {
+  background-color: #FFFFFF;
+}
+body {
+  background-color: transparent;
+}
+
 /* Ensure sections don't leak animation offsets horizontally */
 section {
   overflow-x: clip;
