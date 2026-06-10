@@ -35,7 +35,7 @@ function AIStackCard({
       }}
       className="p-5 md:p-6 rounded-2xl transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1"
       style={{
-        backgroundColor: hovered ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)",
+        backgroundColor: hovered ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.04)",
         backdropFilter: "blur(12px) saturate(150%)",
         WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: hovered ? "1px solid rgba(255,255,255,0.14)" : "1px solid rgba(255,255,255,0.08)",
@@ -108,7 +108,7 @@ export default function AIStack() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-[14px] md:text-[15px] font-normal leading-[1.6] mb-8 md:mb-10 ml-[44px] md:ml-[56px]"
-          style={{ color: "rgba(245,245,247,0.45)" }}
+          style={{ color: "rgba(245,245,247,0.58)" }}
         >
           {lang === "en" ? "$400+/month personal investment" : "每月 $400+ 个人投入"}
         </motion.p>

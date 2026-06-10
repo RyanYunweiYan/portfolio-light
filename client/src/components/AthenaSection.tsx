@@ -39,11 +39,12 @@ export default function AthenaSection() {
   return (
     <section
       ref={ref}
-      className="relative pt-8 md:pt-10 pb-14 md:pb-20 px-6 md:px-8"
+      className="relative pt-8 md:pt-10 pb-14 md:pb-20"
       style={{ backgroundColor: "#FFFFFF" }}
     >
-      {/* Text column — aligned to the site-wide 1200 grid */}
-      <div className="max-w-[1200px] mx-auto">
+      {/* Text column — padding inside the container so the left edge matches
+          every other section's 1200 grid exactly */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -78,7 +79,7 @@ export default function AthenaSection() {
       </div>
 
       {/* Media frame — bleeds out to 1400 for showcase presence */}
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8">
         <motion.a
           ref={frameRef}
           href={DEMO_URL}
@@ -99,7 +100,10 @@ export default function AthenaSection() {
           <img
             src="/images/projects/athena-hero.png"
             alt="Athena voice agent — a live call replay showing the agent pipeline and reasoning trace"
+            width={3200}
+            height={1800}
             className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+            style={{ aspectRatio: "3200 / 1800" }}
             loading="lazy"
           />
           {/* Hover scrim — desktop only by nature */}
@@ -128,7 +132,7 @@ export default function AthenaSection() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-4 flex flex-wrap items-center justify-end gap-x-5 gap-y-2"
+          className="mt-4 flex flex-wrap items-center justify-start md:justify-end gap-x-5 gap-y-2"
         >
           <a
             href={EVAL_URL}

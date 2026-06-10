@@ -208,7 +208,14 @@ function ProjectModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-200 bg-black/[0.06] hover:bg-black/[0.12]"
+          aria-label="Close"
+          className="absolute top-4 right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-white"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(12px) saturate(160%)",
+            WebkitBackdropFilter: "blur(12px) saturate(160%)",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.10)",
+          }}
         >
           <X size={16} style={{ color: "#1D1D1F" }} />
         </button>

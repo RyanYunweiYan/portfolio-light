@@ -37,11 +37,12 @@ export default function BitepediaSection() {
   return (
     <section
       ref={ref}
-      className="relative pt-14 md:pt-20 pb-8 md:pb-10 px-6 md:px-8"
+      className="relative pt-14 md:pt-20 pb-8 md:pb-10"
       style={{ backgroundColor: "#FFFFFF" }}
     >
-      {/* Text column — aligned to the site-wide 1200 grid */}
-      <div className="max-w-[1200px] mx-auto">
+      {/* Text column — padding inside the container so the left edge matches
+          every other section's 1200 grid exactly */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -76,7 +77,7 @@ export default function BitepediaSection() {
       </div>
 
       {/* Media frame — bleeds out to 1400 for showcase presence */}
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8">
         <motion.div
           ref={frameRef}
           initial={{ opacity: 0 }}
