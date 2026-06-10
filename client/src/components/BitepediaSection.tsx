@@ -1,10 +1,12 @@
 /**
  * Bitepedia Section
  * Design: Live interactive demo embedded inline, vintage paper tone framed by site neutral
- * Animation: section fade-up + iframe scale-in
+ * Layout: text column on the 1200 grid, media frame bleeds to 1400 (Apple editorial)
+ * Animation: section fade-up; frame scale/y is scroll-scrubbed (reversible, hand-tracked)
  * Behavior: iframe loads /bitepedia/ static site; user clicks/taps inside to drill
  */
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "@/hooks/useScrollAnimation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
@@ -12,6 +14,15 @@ import { EASE } from "@/const";
 export default function BitepediaSection() {
   const { ref, isInView } = useInView<HTMLElement>();
   const { lang } = useLanguage();
+
+  // Scroll-scrubbed entrance for the demo frame
+  const frameRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: frameRef,
+    offset: ["start end", "start 0.35"],
+  });
+  const frameScale = useTransform(scrollYProgress, [0, 1], [0.965, 1]);
+  const frameY = useTransform(scrollYProgress, [0, 1], [28, 0]);
 
   const headline = lang === "en" ? "Bitepedia" : "Bitepedia";
   const sub =
@@ -26,10 +37,11 @@ export default function BitepediaSection() {
   return (
     <section
       ref={ref}
-      className="relative pt-14 md:pt-20 pb-8 md:pb-10 px-6 md:px-10"
+      className="relative pt-14 md:pt-20 pb-8 md:pb-10 px-6 md:px-8"
       style={{ backgroundColor: "#FFFFFF" }}
     >
-      <div className="max-w-[1400px] mx-auto">
+      {/* Text column — aligned to the site-wide 1200 grid */}
+      <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -61,13 +73,19 @@ export default function BitepediaSection() {
             {hint}
           </p>
         </motion.div>
+      </div>
 
+      {/* Media frame — bleeds out to 1400 for showcase presence */}
+      <div className="max-w-[1400px] mx-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          ref={frameRef}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.12, ease: EASE.smooth }}
           className="rounded-2xl overflow-hidden"
           style={{
+            scale: frameScale,
+            y: frameY,
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow:
               "0 18px 60px rgba(58,46,31,0.12), 0 4px 14px rgba(0,0,0,0.04)",

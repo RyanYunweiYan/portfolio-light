@@ -5,7 +5,8 @@
  * show a full-width preview that opens the real demo full screen, plus a link
  * to its automated evaluation report (the "build + test" story).
  */
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "@/hooks/useScrollAnimation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
@@ -16,6 +17,15 @@ const EVAL_URL = "https://athena.ryanyunwei.com/eval";
 export default function AthenaSection() {
   const { ref, isInView } = useInView<HTMLElement>();
   const { lang } = useLanguage();
+
+  // Scroll-scrubbed entrance for the preview frame
+  const frameRef = useRef<HTMLAnchorElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: frameRef,
+    offset: ["start end", "start 0.35"],
+  });
+  const frameScale = useTransform(scrollYProgress, [0, 1], [0.965, 1]);
+  const frameY = useTransform(scrollYProgress, [0, 1], [28, 0]);
 
   const sub =
     lang === "en"
@@ -29,10 +39,11 @@ export default function AthenaSection() {
   return (
     <section
       ref={ref}
-      className="relative pt-8 md:pt-10 pb-14 md:pb-20 px-6 md:px-10"
+      className="relative pt-8 md:pt-10 pb-14 md:pb-20 px-6 md:px-8"
       style={{ backgroundColor: "#FFFFFF" }}
     >
-      <div className="max-w-[1400px] mx-auto">
+      {/* Text column — aligned to the site-wide 1200 grid */}
+      <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -64,17 +75,22 @@ export default function AthenaSection() {
             {hint}
           </p>
         </motion.div>
+      </div>
 
+      {/* Media frame — bleeds out to 1400 for showcase presence */}
+      <div className="max-w-[1400px] mx-auto">
         <motion.a
+          ref={frameRef}
           href={DEMO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.12, ease: EASE.smooth }}
-          whileHover={{ scale: 1.005 }}
           className="group block rounded-2xl overflow-hidden relative cursor-pointer"
           style={{
+            scale: frameScale,
+            y: frameY,
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow:
               "0 18px 60px rgba(31,41,90,0.14), 0 4px 14px rgba(0,0,0,0.04)",
@@ -83,20 +99,24 @@ export default function AthenaSection() {
           <img
             src="/images/projects/athena-hero.png"
             alt="Athena voice agent — a live call replay showing the agent pipeline and reasoning trace"
-            className="block w-full h-auto"
+            className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.015]"
             loading="lazy"
           />
-          {/* Hover play affordance */}
+          {/* Hover scrim — desktop only by nature */}
           <div
-            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{ backgroundColor: "rgba(15,16,26,0.18)" }}
-          >
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ backgroundColor: "rgba(15,16,26,0.14)" }}
+          />
+          {/* Play affordance — always visible so touch users know it's tappable */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <span
-              className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-[15px] font-semibold"
+              className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-[15px] font-semibold transition-transform duration-300 group-hover:scale-105"
               style={{
-                backgroundColor: "rgba(255,255,255,0.96)",
+                backgroundColor: "rgba(255,255,255,0.85)",
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
                 color: "#1d1d1f",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.16)",
               }}
             >
               ▶ {lang === "en" ? "Play a live call" : "播放一通电话"}

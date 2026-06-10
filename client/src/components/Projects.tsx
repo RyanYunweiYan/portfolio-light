@@ -44,6 +44,7 @@ function ProjectCard({
 
   return (
     <motion.div
+      layoutId={`project-card-${project.id}`}
       initial={{ opacity: 0, y: 30, scale: 0.95, filter: "blur(4px)" }}
       animate={
         isInView ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" } : {}
@@ -54,15 +55,18 @@ function ProjectCard({
         ease: EASE.smooth,
       }}
       onClick={onClick}
-      className={`group cursor-pointer rounded-2xl overflow-hidden transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.1),0_10px_24px_rgba(0,0,0,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.04)] hover:border-[rgba(0,113,227,0.2)] active:scale-[0.98] ${
+      className={`group cursor-pointer overflow-hidden transition-[box-shadow,border-color] duration-200 hover:shadow-[0_25px_60px_rgba(0,0,0,0.1),0_10px_24px_rgba(0,0,0,0.06)] shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.04)] hover:border-[rgba(0,113,227,0.2)] ${
         project.size === "large"
           ? "md:col-span-2"
           : project.size === "medium"
           ? "md:col-span-1 md:row-span-1"
           : "md:col-span-1 md:row-span-1"
       }`}
+      whileHover={{ y: -8 }}
+      whileTap={{ scale: 0.98 }}
       style={{
         backgroundColor: "#FFFFFF",
+        borderRadius: 16,
       }}
     >
       {/* Thumbnail / Gradient placeholder */}
@@ -188,13 +192,12 @@ function ProjectModal({
       <motion.div
         role="dialog"
         aria-modal="true"
-        initial={{ opacity: 0, scale: 0.92, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 10 }}
-        transition={{ duration: 0.3, ease: EASE.smooth }}
-        className="relative w-[calc(100vw-32px)] sm:w-full max-w-[680px] max-h-[85vh] overflow-y-auto rounded-2xl"
+        layoutId={`project-card-${project.id}`}
+        transition={{ type: "spring", stiffness: 300, damping: 32 }}
+        className="relative w-[calc(100vw-32px)] sm:w-full max-w-[680px] max-h-[85vh] overflow-y-auto"
         style={{
-          backgroundColor: "rgba(255,255,255,0.88)",
+          borderRadius: 16,
+          backgroundColor: "rgba(255,255,255,0.92)",
           backdropFilter: "blur(40px) saturate(200%)",
           WebkitBackdropFilter: "blur(40px) saturate(200%)",
           boxShadow: "0 40px 100px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5)",
