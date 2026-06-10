@@ -253,7 +253,7 @@ export default function ContentSection() {
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, ease: EASE.smooth }}
-            className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
+            className="flex items-center gap-3 md:gap-4 mb-6 md:mb-10"
           >
             <span
               aria-hidden

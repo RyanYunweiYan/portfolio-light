@@ -79,8 +79,8 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,113,227,0.03) 0%, #FFFFFF 70%)", minHeight: "100dvh" }}
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,113,227,0.03) 0%, #FFFFFF 70%)", minHeight: "88dvh" }}
     >
       <motion.div
         className="text-center px-6 max-w-[900px] mx-auto"

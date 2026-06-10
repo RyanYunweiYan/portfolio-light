@@ -333,18 +333,16 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative pt-20 md:pt-36 pb-12 md:pb-16"
+      className="relative pt-16 md:pt-20 pb-12 md:pb-16"
       style={{ backgroundColor: "transparent" }}
     >
-      {/* Apple-style thin line separator */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[1px]" style={{ background: "rgba(29,29,31,0.15)" }} />
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Section label — chapter style (acts as the section heading) */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: EASE.smooth }}
-          className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
+          className="flex items-center gap-3 md:gap-4 mb-6 md:mb-10"
         >
           <span
             aria-hidden

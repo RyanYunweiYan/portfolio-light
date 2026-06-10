@@ -140,7 +140,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-20 md:py-36"
+      className="relative pt-12 md:pt-12 pb-16 md:pb-20"
       style={{ backgroundColor: "#F5F5F7" }}
     >
       {/* Subtle noise texture overlay */}
@@ -209,7 +209,7 @@ export default function About() {
         </div>
 
         {/* Skill tags — bounce in, separate InView trigger */}
-        <div ref={tagsRef} className="flex flex-wrap gap-3 mb-12 md:mb-20">
+        <div ref={tagsRef} className="flex flex-wrap gap-3 mb-12 md:mb-16">
           {skills.map((skill, i) => (
             <motion.span
               key={skill}
@@ -232,7 +232,7 @@ export default function About() {
         </div>
 
         {/* Work Experience — company names are key recruiter signals */}
-        <div ref={expRef} className="mb-12 md:mb-20">
+        <div ref={expRef} className="mb-12 md:mb-16">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             animate={expInView ? { opacity: 1, y: 0 } : {}}
@@ -302,7 +302,7 @@ export default function About() {
         </div>
 
         {/* Impact Metrics */}
-        <div ref={metricsRef} className="mb-12 md:mb-20">
+        <div ref={metricsRef} className="mb-12 md:mb-16">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             animate={metricsInView ? { opacity: 1, y: 0 } : {}}
