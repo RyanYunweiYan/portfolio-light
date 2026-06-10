@@ -117,8 +117,8 @@ function ProjectCard({
             <span
               className="text-[11px] font-medium px-2 py-0.5 rounded-full"
               style={{
-                backgroundColor: project.status === "in-progress" ? "rgba(255,149,0,0.1)" : "rgba(0,113,227,0.1)",
-                color: project.status === "in-progress" ? "#FF9500" : "#0071E3",
+                backgroundColor: project.status === "in-progress" ? "rgba(255,149,0,0.12)" : "rgba(0,113,227,0.1)",
+                color: project.status === "in-progress" ? "#B25000" : "#0071E3",
               }}
             >
               {statusLabels[project.status]?.[lang] || project.status}
@@ -143,7 +143,7 @@ function ProjectCard({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 mt-3 text-[13px] font-medium transition-all duration-200 hover:gap-2.5"
+            className="inline-flex items-center gap-1.5 mt-3 py-3 -my-3 text-[13px] font-medium transition-all duration-200 hover:gap-2.5"
             style={{ color: "#0071E3" }}
           >
             {lang === "en" ? "View Live" : "在线查看"}
@@ -205,20 +205,22 @@ function ProjectModal({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute top-4 right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-white"
-          style={{
-            backgroundColor: "rgba(255,255,255,0.7)",
-            backdropFilter: "blur(12px) saturate(160%)",
-            WebkitBackdropFilter: "blur(12px) saturate(160%)",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.10)",
-          }}
-        >
-          <X size={16} style={{ color: "#1D1D1F" }} />
-        </button>
+        {/* Close button — sticky so it stays reachable while the modal scrolls */}
+        <div className="sticky top-0 z-10 h-0">
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-white"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.7)",
+              backdropFilter: "blur(12px) saturate(160%)",
+              WebkitBackdropFilter: "blur(12px) saturate(160%)",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.10)",
+            }}
+          >
+            <X size={16} style={{ color: "#1D1D1F" }} />
+          </button>
+        </div>
 
         {/* Modal image or gradient */}
         {project.coverImage ? (

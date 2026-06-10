@@ -69,7 +69,7 @@ export default function BitepediaSection() {
           </p>
           <p
             className="mt-4 text-[13px] md:text-[14px]"
-            style={{ color: "rgba(29,29,31,0.45)" }}
+            style={{ color: "rgba(29,29,31,0.62)" }}
           >
             {hint}
           </p>
@@ -115,7 +115,7 @@ export default function BitepediaSection() {
             href="/bitepedia/index.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[13px] font-medium hover:underline"
+            className="inline-flex items-center py-3 -my-1 text-[13px] font-medium hover:underline"
             style={{ color: "#0071E3" }}
           >
             {lang === "en" ? "Open full screen ↗" : "全屏打开 ↗"}

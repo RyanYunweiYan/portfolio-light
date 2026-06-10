@@ -121,8 +121,8 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.8 }}
-                  className="text-[16px] sm:text-[18px] font-normal tracking-[0.2em]"
-                  style={{ color: "rgba(29,29,31,0.35)" }}
+                  className="text-[18px] font-normal tracking-[0.2em]"
+                  style={{ color: "rgba(29,29,31,0.40)" }}
                 >
                   {PROFILE.nameCN}
                 </motion.p>
@@ -182,8 +182,8 @@ export default function Hero() {
                       {metric.value}
                     </span>
                     <span
-                      className="block text-[10px] md:text-[11px] font-medium uppercase tracking-[0.05em] mt-1.5 md:whitespace-nowrap leading-tight"
-                      style={{ color: "rgba(29,29,31,0.45)" }}
+                      className="block text-[11px] font-medium uppercase tracking-[0.05em] mt-1.5 md:whitespace-nowrap leading-tight"
+                      style={{ color: "rgba(29,29,31,0.62)" }}
                     >
                       {t(metric.label)}
                     </span>

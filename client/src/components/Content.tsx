@@ -58,7 +58,7 @@ function CreativeCard({
         boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.10)";
+        e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
         e.currentTarget.style.borderColor = "rgba(0,113,227,0.35)";
       }}
       onMouseLeave={(e) => {
@@ -83,11 +83,11 @@ function CreativeCard({
           <div className="flex items-center flex-wrap gap-x-3 gap-y-1 mb-3">
             <Icon
               size={16}
-              style={{ color: "rgba(0,113,227,0.7)" }}
+              style={{ color: "#409CFF" }}
             />
             <span
               className="text-[12px] font-medium uppercase tracking-[0.1em]"
-              style={{ color: "rgba(0,113,227,0.7)" }}
+              style={{ color: "#409CFF" }}
             >
               {typeLabels[work.type]}
             </span>
@@ -121,7 +121,7 @@ function CreativeCard({
           {work.stats && (
             <p
               className="text-[13px] font-medium"
-              style={{ color: "rgba(0,113,227,0.6)" }}
+              style={{ color: "#409CFF" }}
             >
               {work.stats}
             </p>

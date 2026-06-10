@@ -32,7 +32,7 @@
   .hero h1 { font-family: "EB Garamond", serif; font-size: clamp(56px, 11vw, 132px); font-weight: 500; letter-spacing: 0.04em; margin: 0 0 12px; line-height: 1; }
   .hero .sub { font-family: "EB Garamond", serif; font-style: italic; font-size: clamp(18px, 2.4vw, 28px); opacity: 0.7; letter-spacing: 0.04em; margin-bottom: 22px; }
   .hero .tagline { font-family: "Noto Serif SC", serif; font-size: 13px; letter-spacing: 0.32em; opacity: 0.55; text-transform: uppercase; }
-  .grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 32px; }
+  .grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px; }
   .card { background: white; box-shadow: 0 6px 24px rgba(58, 46, 31, 0.12); aspect-ratio: 1672/941; position: relative; overflow: hidden; cursor: pointer; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; display: block; }
   .card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(58, 46, 31, 0.22); }
   .card img { width: 100%; height: 100%; object-fit: cover; display: block; }

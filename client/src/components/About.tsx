@@ -393,7 +393,7 @@ export default function About() {
                 className="inline-block px-4 py-2 text-[13px] font-medium rounded-full"
                 style={{
                   backgroundColor: "rgba(0,113,227,0.06)",
-                  color: "rgba(0,113,227,0.8)",
+                  color: "#0071E3",
                 }}
               >
                 {t(cert)}

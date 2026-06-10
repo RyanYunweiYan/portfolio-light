@@ -85,7 +85,7 @@ export default function Navbar() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-8 flex items-center justify-between h-14">
         <a
           href="#hero"
-          className="text-[18px] font-bold tracking-tight transition-colors duration-500"
+          className="text-[18px] font-bold tracking-tight transition-colors duration-500 p-3 -m-3"
           style={{ color: isDark ? "#F5F5F7" : "#1D1D1F" }}
         >
           R.
@@ -164,7 +164,16 @@ export default function Navbar() {
                   transition={{ duration: 0.2, delay: 0.05 * i }}
                   className="text-[15px] font-medium min-h-[44px] flex items-center transition-colors duration-200"
                   style={{ color: isDark ? "#F5F5F7" : "#1D1D1F" }}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    // Smooth-scroll explicitly after the menu's exit animation;
+                    // native hash scrolling gets cancelled by the collapse re-render
+                    e.preventDefault();
+                    setMobileOpen(false);
+                    const id = link.href.slice(1);
+                    window.setTimeout(() => {
+                      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                    }, 300);
+                  }}
                 >
                   {t(link.label)}
                 </motion.a>

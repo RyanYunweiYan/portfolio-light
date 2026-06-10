@@ -45,7 +45,7 @@ function SocialIcon({
       <div
         className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
         style={{
-          backgroundColor: hovered ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.06)",
+          backgroundColor: hovered ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.04)",
           border: `1px solid ${hovered ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.08)"}`,
           transform: hovered ? "scale(1.15)" : "scale(1)",
         }}
@@ -94,7 +94,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="pt-12 md:pt-16 pb-16 md:pb-24"
+      className="pt-12 md:pt-14 pb-16 md:pb-24"
       style={{ backgroundColor: "transparent" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
@@ -144,7 +144,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 8 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="group inline-flex items-center gap-3 mb-10 relative"
+          className="group inline-flex items-center gap-3 mb-10 py-2 -my-2 relative"
         >
           <Mail size={24} className="flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5" style={{ color: "#0071E3" }} />
           <span
