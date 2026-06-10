@@ -148,7 +148,7 @@ export default function Contact() {
         >
           <Mail size={24} className="flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5" style={{ color: "#0071E3" }} />
           <span
-            className="text-[20px] sm:text-[26px] md:text-[32px] font-semibold tracking-tight break-all relative pb-1"
+            className="text-[18px] sm:text-[20px] md:text-[22px] font-semibold tracking-tight break-all relative pb-1"
             style={{ color: "#F5F5F7" }}
           >
             {PROFILE.email}

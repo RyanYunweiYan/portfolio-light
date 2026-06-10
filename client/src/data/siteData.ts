@@ -316,7 +316,7 @@ export const AI_STACK = [
   {
     category: "Create",
     description: { en: "Content generation", zh: "内容创作" } as BiText,
-    tools: ["Jimeng (即梦)", "Suno", "MiniMax", "Flow (Google)", "Stitch (Google)"],
+    tools: ["Suno", "MiniMax", "Flow (Google)", "Stitch (Google)", "Jimeng (即梦)"],
   },
   {
     category: "Ship",
