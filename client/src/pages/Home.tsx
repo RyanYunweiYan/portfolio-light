@@ -40,6 +40,8 @@ function ScrollProgressBar() {
 function BackToTop() {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  // Invisible button must not capture clicks at the top of the page
+  const pointerEvents = useTransform(scrollYProgress, (v) => (v > 0.05 ? "auto" : "none"));
   const { lang } = useLanguage();
 
   return (
@@ -48,10 +50,14 @@ function BackToTop() {
       className="fixed right-6 z-50 w-11 h-11 rounded-full flex items-center justify-center"
       style={{
         bottom: "calc(1.5rem + env(safe-area-inset-bottom, 0px))",
-        backgroundColor: "rgba(0,113,227,0.9)",
-        color: "#FFFFFF",
-        boxShadow: "0 4px 14px rgba(0,113,227,0.3)",
+        backgroundColor: "rgba(255,255,255,0.75)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
+        color: "#1D1D1F",
+        border: "1px solid rgba(0,0,0,0.08)",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
         opacity,
+        pointerEvents,
       }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}

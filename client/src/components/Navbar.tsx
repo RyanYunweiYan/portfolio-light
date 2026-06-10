@@ -61,7 +61,7 @@ export default function Navbar() {
         transform: isHidden ? "translateY(-100%)" : "translateY(0)",
         backgroundColor: isScrolled
           ? isDark
-            ? "rgba(45, 45, 45, 0.82)"
+            ? "rgba(22, 22, 23, 0.82)"
             : "rgba(255, 255, 255, 0.82)"
           : "transparent",
         backdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
@@ -140,7 +140,7 @@ export default function Navbar() {
             transition={{ duration: 0.25, ease: EASE.smooth }}
             className="md:hidden overflow-hidden"
             style={{
-              backgroundColor: isDark ? "rgba(45,45,45,0.95)" : "rgba(255,255,255,0.95)",
+              backgroundColor: isDark ? "rgba(22,22,23,0.95)" : "rgba(255,255,255,0.95)",
             }}
           >
             <div className="px-6 pb-4 flex flex-col gap-1">

@@ -95,7 +95,7 @@ export default function Contact() {
       id="contact"
       ref={ref}
       className="pt-12 md:pt-16 pb-16 md:pb-24"
-      style={{ backgroundColor: "#2D2D2D" }}
+      style={{ backgroundColor: "#161617" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Section label — chapter style (dark, acts as section heading) */}

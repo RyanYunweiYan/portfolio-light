@@ -29,11 +29,11 @@ export default function ScrollBackground() {
         if (scrollY < gradientStart) {
           setBgColor("#FFFFFF");
         } else if (scrollY > gradientEnd) {
-          setBgColor("#2D2D2D");
+          setBgColor("#161617");
         } else {
           const progress = (scrollY - gradientStart) / (gradientEnd - gradientStart);
           const eased = progress * progress * (3 - 2 * progress);
-          const v = Math.round(255 - eased * (255 - 45));
+          const v = Math.round(255 - eased * (255 - 22));
           setBgColor(`rgb(${v},${v},${v})`);
         }
       });

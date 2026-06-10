@@ -245,7 +245,7 @@ export default function ContentSection() {
       <div
         className="h-[60px]"
         style={{
-          background: "linear-gradient(to bottom, #FFFFFF 0%, #2D2D2D 100%)",
+          background: "linear-gradient(to bottom, #FFFFFF 0%, #161617 100%)",
         }}
       />
 
@@ -253,7 +253,7 @@ export default function ContentSection() {
         id="creative"
         ref={ref}
         className="pt-16 md:pt-24 pb-10 md:pb-14"
-        style={{ backgroundColor: "#2D2D2D" }}
+        style={{ backgroundColor: "#161617" }}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
           {/* Section label — chapter style (dark, acts as section heading) */}

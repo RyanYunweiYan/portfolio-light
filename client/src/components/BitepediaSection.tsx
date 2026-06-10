@@ -55,8 +55,8 @@ export default function BitepediaSection() {
             {sub}
           </p>
           <p
-            className="mt-4 text-[13px] md:text-[14px] italic"
-            style={{ color: "rgba(29,29,31,0.42)" }}
+            className="mt-4 text-[13px] md:text-[14px]"
+            style={{ color: "rgba(29,29,31,0.45)" }}
           >
             {hint}
           </p>
