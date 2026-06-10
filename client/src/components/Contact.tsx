@@ -146,10 +146,10 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.7 }}
           className="group inline-flex items-center gap-3 mb-10 relative"
         >
-          <Mail size={22} className="flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5" style={{ color: "#0071E3" }} />
+          <Mail size={24} className="flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5" style={{ color: "#0071E3" }} />
           <span
-            className="text-[15px] sm:text-[17px] md:text-[19px] font-medium tracking-tight break-all relative pb-0.5"
-            style={{ color: "#0071E3" }}
+            className="text-[20px] sm:text-[26px] md:text-[32px] font-semibold tracking-tight break-all relative pb-1"
+            style={{ color: "#F5F5F7" }}
           >
             {PROFILE.email}
             <span
