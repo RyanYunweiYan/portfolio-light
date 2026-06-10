@@ -37,11 +37,12 @@ export default function Navbar() {
         }
         lastScrollY.current = y;
 
-        // Detect dark section — flip at the midpoint of the lengthened bg transition
+        // Detect dark section — flip late in the bg transition (≈70% progress)
+        // so dark glass + light text never sit on a still-light background
         const creativeEl = document.getElementById("creative");
         if (creativeEl) {
           const creativeTop = creativeEl.getBoundingClientRect().top + y;
-          setIsDark(y > creativeTop - window.innerHeight * 1.3);
+          setIsDark(y > creativeTop - window.innerHeight * 0.5);
         }
 
         // Quiet wayfinding: the section currently under the navbar

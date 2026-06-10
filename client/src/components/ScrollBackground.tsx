@@ -1,10 +1,11 @@
 /**
  * ScrollBackground — Handles the smooth light-to-dark background transition
  * Uses a fixed background layer that interpolates color based on scroll position.
- * The transition plays out over ~0.6 viewport heights of scrolling and completes
- * exactly when the Creative section's top reaches the viewport bottom, so the
- * fixed layer hands off seamlessly to the section's own opaque #161617.
- * (Projects has a transparent background so the fade shows through its tail.)
+ * Projects AND the dark sections (Creative/Stack/Contact) are all transparent,
+ * so this layer owns the page background end-to-end. That frees the transition
+ * to happen late — in the gap after the project cards have mostly scrolled out —
+ * instead of while white cards still fill the viewport (which read as a jarring
+ * "sudden blackout"). It completes just before the Creative heading settles.
  */
 import { useEffect, useState } from "react";
 
@@ -25,8 +26,8 @@ export default function ScrollBackground() {
         const creativeTop = el.getBoundingClientRect().top + window.scrollY;
 
         const vh = window.innerHeight;
-        const gradientStart = creativeTop - vh * 1.6;
-        const gradientEnd = creativeTop - vh;
+        const gradientStart = creativeTop - vh * 0.9;
+        const gradientEnd = creativeTop - vh * 0.3;
         const scrollY = window.scrollY;
 
         if (scrollY < gradientStart) {

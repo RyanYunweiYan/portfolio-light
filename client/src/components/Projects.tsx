@@ -333,7 +333,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative py-20 md:py-36"
+      className="relative pt-20 md:pt-36 pb-12 md:pb-16"
       style={{ backgroundColor: "transparent" }}
     >
       {/* Apple-style thin line separator */}

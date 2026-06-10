@@ -80,7 +80,7 @@ export default function AIStack() {
       id="stack"
       ref={ref}
       className="py-10 md:py-16"
-      style={{ backgroundColor: "#161617" }}
+      style={{ backgroundColor: "transparent" }}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-8">
         {/* Section label — sub-section style (no chapter number, hairline + label) */}

@@ -244,8 +244,8 @@ export default function ContentSection() {
       <section
         id="creative"
         ref={ref}
-        className="pt-16 md:pt-24 pb-10 md:pb-14"
-        style={{ backgroundColor: "#161617" }}
+        className="pt-10 md:pt-14 pb-10 md:pb-14"
+        style={{ backgroundColor: "transparent" }}
       >
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
           {/* Section label — chapter style (dark, acts as section heading) */}
