@@ -20,7 +20,7 @@ const gradientPalette = [
   "linear-gradient(135deg, #0071E3 0%, #00B4D8 100%)",
   "linear-gradient(135deg, #5856D6 0%, #0071E3 100%)",
   "linear-gradient(135deg, #0071E3 0%, #34C759 100%)",
-  "linear-gradient(135deg, #FF9500 0%, #FF2D55 100%)",
+  "linear-gradient(135deg, #44456A 0%, #7D7FA8 100%)",
   "linear-gradient(135deg, #AF52DE 0%, #FF2D55 100%)",
 ];
 
@@ -102,20 +102,20 @@ function ProjectCard({
       <div className="p-5 md:p-6">
         <div className="flex items-center gap-3 mb-2">
           <span
-            className="text-[12px] font-medium uppercase tracking-[0.1em]"
+            className="text-[13px] font-medium uppercase tracking-[0.1em]"
             style={{ color: "#0071E3" }}
           >
             {project.tags[0]}
           </span>
           <span
-            className="text-[12px] font-normal"
+            className="text-[13px] font-normal"
             style={{ color: "rgba(29,29,31,0.55)" }}
           >
             {project.year}
           </span>
           {project.status !== "live" && (
             <span
-              className="text-[11px] font-medium px-2 py-0.5 rounded-full"
+              className="text-[12px] font-medium px-2 py-0.5 rounded-full"
               style={{
                 backgroundColor: project.status === "in-progress" ? "rgba(255,149,0,0.12)" : "rgba(0,113,227,0.1)",
                 color: project.status === "in-progress" ? "#B25000" : "#0071E3",
@@ -250,13 +250,13 @@ function ProjectModal({
         <div className="p-6 md:p-8">
           <div className="flex items-center gap-3 mb-3">
             <span
-              className="text-[12px] font-medium uppercase tracking-[0.1em]"
+              className="text-[13px] font-medium uppercase tracking-[0.1em]"
               style={{ color: "#0071E3" }}
             >
               {t(project.subtitle)}
             </span>
             <span
-              className="text-[12px] font-normal"
+              className="text-[13px] font-normal"
               style={{ color: "rgba(29,29,31,0.55)" }}
             >
               {project.year}
@@ -294,7 +294,7 @@ function ProjectModal({
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block px-3 py-1 text-[12px] font-medium rounded-full"
+                className="inline-block px-3 py-1 text-[13px] font-medium rounded-full"
                 style={{
                   backgroundColor: "rgba(29,29,31,0.06)",
                   color: "rgba(29,29,31,0.6)",
@@ -311,7 +311,7 @@ function ProjectModal({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-6 px-6 py-2.5 text-[14px] font-medium rounded-full transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.04]"
+              className="inline-block mt-6 px-6 py-2.5 text-[15px] font-medium rounded-full transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.04]"
               style={{
                 backgroundColor: "#0071E3",
                 color: "#FFFFFF",

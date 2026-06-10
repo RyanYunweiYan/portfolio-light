@@ -86,7 +86,7 @@ function CreativeCard({
               style={{ color: "#409CFF" }}
             />
             <span
-              className="text-[12px] font-medium uppercase tracking-[0.1em]"
+              className="text-[13px] font-medium uppercase tracking-[0.1em]"
               style={{ color: "#409CFF" }}
             >
               {typeLabels[work.type]}
@@ -99,7 +99,7 @@ function CreativeCard({
             </span>
             {work.platform && (
               <span
-                className="text-[12px] font-normal"
+                className="text-[13px] font-normal"
                 style={{ color: "rgba(245,245,247,0.45)" }}
               >
                 {work.platform}
@@ -113,7 +113,7 @@ function CreativeCard({
             {t(work.title)}
           </h3>
           <p
-            className="text-[14px] md:text-[15px] font-normal leading-[1.6] line-clamp-2 mb-2"
+            className="text-[15px] font-normal leading-[1.6] line-clamp-2 mb-2"
             style={{ color: "rgba(245,245,247,0.62)" }}
           >
             {t(work.description)}
@@ -123,7 +123,7 @@ function CreativeCard({
               className="text-[13px] font-medium"
               style={{ color: "#409CFF" }}
             >
-              {work.stats}
+              {t(work.stats)}
             </p>
           )}
           {/* Video embed for local .mp4 files */}
@@ -153,7 +153,7 @@ function CreativeCard({
           {/* Placeholder state for works without embed */}
           {!work.embedUrl && !work.externalUrl && (
             <p
-              className="text-[12px] mt-2 italic"
+              className="text-[13px] mt-2"
               style={{ color: "rgba(245,245,247,0.5)" }}
             >
               {lang === "en" ? "Coming soon" : "即将上线"}

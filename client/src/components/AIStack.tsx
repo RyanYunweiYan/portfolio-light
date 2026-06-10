@@ -60,7 +60,7 @@ function AIStackCard({
         {category.tools.map((tool) => (
           <li
             key={tool}
-            className="text-[14px] md:text-[15px] font-normal"
+            className="text-[15px] font-normal"
             style={{ color: "rgba(245,245,247,0.65)" }}
           >
             {tool}

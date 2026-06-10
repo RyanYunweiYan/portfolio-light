@@ -99,7 +99,7 @@ function MetricCard({
         <CountUp value={metric.value} isInView={isInView} />
       </p>
       <p
-        className="text-[14px] font-semibold mb-1"
+        className="text-[13px] font-semibold mb-1"
         style={{ color: "rgba(29,29,31,0.8)" }}
       >
         {t(metric.label)}
@@ -200,7 +200,7 @@ export default function About() {
                 delay: 0.5 + i * 0.2,
                 ease: "easeOut",
               }}
-              className="text-[17px] md:text-[19px] leading-[1.65] font-normal"
+              className="text-[17px] md:text-[18px] leading-[1.65] font-normal"
               style={{ color: "rgba(29,29,31,0.72)" }}
             >
               {p}
@@ -271,7 +271,7 @@ export default function About() {
                       {exp.company}
                     </h4>
                     <p
-                      className="text-[14px] font-medium"
+                      className="text-[13px] font-medium"
                       style={{ color: "#0071E3" }}
                     >
                       {t(exp.role)}
@@ -288,7 +288,7 @@ export default function About() {
                   {t(exp.highlights).slice(0, 2).map((hl, j) => (
                     <li
                       key={`${lang}-${i}-${j}`}
-                      className="text-[14px] leading-[1.55] flex items-start gap-2"
+                      className="text-[15px] leading-[1.55] flex items-start gap-2"
                       style={{ color: "rgba(29,29,31,0.65)" }}
                     >
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#0071E3] flex-shrink-0" />
@@ -355,7 +355,7 @@ export default function About() {
                 }}
               >
                 <p
-                  className="text-[14px] font-semibold"
+                  className="text-[15px] font-semibold"
                   style={{ color: "#1D1D1F" }}
                 >
                   {t(edu.school)}
@@ -369,7 +369,7 @@ export default function About() {
                 </p>
                 {edu.period && (
                   <p
-                    className="text-[12px] font-normal leading-[1.5]"
+                    className="text-[13px] font-normal leading-[1.5]"
                     style={{ color: "rgba(29,29,31,0.55)" }}
                   >
                     {edu.period}

@@ -57,7 +57,7 @@ function SocialIcon({
         />
       </div>
       <span
-        className="text-[12px] font-medium transition-colors duration-200"
+        className="text-[13px] font-medium transition-colors duration-200"
         style={{ color: hovered ? "#F5F5F7" : "rgba(245,245,247,0.55)" }}
       >
         {link.platform}
@@ -131,7 +131,7 @@ export default function Contact() {
             style={{ backgroundColor: "#30D158" }}
           />
           <span
-            className="text-[13px] md:text-[14px] font-normal"
+            className="text-[14px] font-normal"
             style={{ color: "rgba(245,245,247,0.7)" }}
           >
             {t(PROFILE.availability)}

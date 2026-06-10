@@ -188,7 +188,6 @@ export const PROJECTS: Project[] = [
     year: "2026",
     status: "in-progress",
     size: "small",
-    coverImage: "/images/projects/memorial-app.png",
   },
   {
     id: "personal-website",
@@ -232,7 +231,7 @@ export interface CreativeWork {
   coverImage?: string;
   date: string;
   platform?: string;
-  stats?: string;
+  stats?: BiText;
 }
 
 export const CREATIVE_WORKS: CreativeWork[] = [
@@ -258,7 +257,7 @@ export const CREATIVE_WORKS: CreativeWork[] = [
     },
     date: "2025",
     platform: "Douyin",
-    stats: "100K+ views across channels",
+    stats: { en: "100K+ views across channels", zh: "全渠道 100K+ 播放" } as BiText,
   },
   {
     id: "ai-music-collection",
@@ -283,7 +282,7 @@ export const CREATIVE_WORKS: CreativeWork[] = [
     externalUrl: "https://mp.weixin.qq.com/s/URaGSRUtuxid-dXAi7JwvQ",
     date: "2026-02",
     platform: "WeChat",
-    stats: "956 reads · 44 shares",
+    stats: { en: "956 reads · 44 shares", zh: "956 阅读 · 44 转发" } as BiText,
   },
   {
     id: "article-ai-hardware",
@@ -296,7 +295,7 @@ export const CREATIVE_WORKS: CreativeWork[] = [
     externalUrl: "https://mp.weixin.qq.com/s/hm0rCFdCFCSUNKKw4psoqw",
     date: "2025-12",
     platform: "WeChat",
-    stats: "3,164 reads · 350 shares · 11%+ share rate",
+    stats: { en: "3,164 reads · 350 shares · 11%+ share rate", zh: "3,164 阅读 · 350 转发 · 转发率 11%+" } as BiText,
   },
 ];
 
