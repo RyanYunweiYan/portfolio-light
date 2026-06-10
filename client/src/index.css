@@ -159,16 +159,6 @@ html {
   }
 }
 
-/* Typing cursor animation */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.typing-cursor {
-  animation: blink 1s step-end infinite;
-}
-
 /* Ensure sections don't leak animation offsets horizontally */
 section {
   overflow-x: clip;

@@ -35,11 +35,11 @@ export default function Navbar() {
         }
         lastScrollY.current = y;
 
-        // Detect dark section
+        // Detect dark section — flip at the midpoint of the lengthened bg transition
         const creativeEl = document.getElementById("creative");
         if (creativeEl) {
           const creativeTop = creativeEl.getBoundingClientRect().top + y;
-          setIsDark(y > creativeTop - 300);
+          setIsDark(y > creativeTop - window.innerHeight * 1.3);
         }
       });
     };

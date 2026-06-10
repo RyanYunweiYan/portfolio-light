@@ -1,17 +1,15 @@
 /**
  * Hero Section — The key moment
  * Design: Editorial Noir — dramatic center-aligned entrance
- * Animation: white screen 0.3s -> name word-by-word fade+blur -> static title -> typewriter secondary -> CTA
- * Parallax: hero text moves at 0.9x scroll speed
+ * Animation: white screen 0.3s -> name word-by-word fade+blur -> static title -> rotating tagline crossfade -> CTA
+ * Exit: scroll-scrubbed parallax + fade driven by motion values (zero React re-renders)
  *
  * RECRUITER-FIRST: Value proposition visible in <3 seconds.
  * Static title ("AI Product Manager & Builder") shown immediately after name.
  * Key metrics hinted above the fold. Two CTAs: primary (Contact) + secondary (Work).
- * CTA buttons appear on a timed delay, NOT gated on typewriter completion.
  */
 import { useEffect, useState, useRef } from "react";
-import { useScrollY } from "@/hooks/useScrollAnimation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { PROFILE, METRICS } from "@/data/siteData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
@@ -19,15 +17,19 @@ import { EASE } from "@/const";
 const nameWords = PROFILE.name.split(" ");
 
 export default function Hero() {
-  const scrollY = useScrollY();
   const { lang, t } = useLanguage();
   const [showContent, setShowContent] = useState(false);
   const [nameComplete, setNameComplete] = useState(false);
-
-  // Typewriter state for cycling secondary taglines
-  const [typedText, setTypedText] = useState("");
   const [taglineIndex, setTaglineIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Scroll-scrubbed exit — motion values run on the compositor, resize-safe
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const secondaryTaglines =
     lang === "en"
@@ -42,14 +44,12 @@ export default function Hero() {
           "从想法到代码到用户——全程 AI 驱动",
         ];
 
-  // Reset typewriter when language changes
+  // Reset rotation when language changes
   const prevLang = useRef(lang);
   useEffect(() => {
     if (prevLang.current !== lang) {
       prevLang.current = lang;
-      setTypedText("");
       setTaglineIndex(0);
-      setIsDeleting(false);
     }
   }, [lang]);
 
@@ -66,51 +66,25 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [showContent]);
 
-  // Typewriter cycling effect (starts after name is complete)
+  // Rotate taglines with a quiet crossfade (starts after name is complete)
   useEffect(() => {
     if (!nameComplete) return;
-
-    const target = secondaryTaglines[taglineIndex];
-
-    if (isDeleting) {
-      if (typedText === "") {
-        setIsDeleting(false);
-        setTaglineIndex((prev) => (prev + 1) % secondaryTaglines.length);
-        return;
-      }
-      const timer = setTimeout(() => {
-        setTypedText((prev) => prev.slice(0, -1));
-      }, 30);
-      return () => clearTimeout(timer);
-    }
-
-    if (typedText === target) {
-      const pauseTimer = setTimeout(() => {
-        setIsDeleting(true);
-      }, 3000);
-      return () => clearTimeout(pauseTimer);
-    }
-
-    const timer = setTimeout(() => {
-      setTypedText(target.slice(0, typedText.length + 1));
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [nameComplete, typedText, isDeleting, taglineIndex, secondaryTaglines]);
+    const id = setInterval(() => {
+      setTaglineIndex((prev) => (prev + 1) % secondaryTaglines.length);
+    }, 3800);
+    return () => clearInterval(id);
+  }, [nameComplete, secondaryTaglines.length]);
 
   return (
     <section
       id="hero"
+      ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(0,113,227,0.03) 0%, #FFFFFF 70%)", minHeight: "100dvh" }}
     >
-      <div
+      <motion.div
         className="text-center px-6 max-w-[900px] mx-auto"
-        style={{
-          transform: `translateY(${scrollY * -0.1}px)`,
-          opacity: Math.max(0, 1 - scrollY / (window.innerHeight * 0.7)),
-          filter: `blur(${Math.min(scrollY / 250, 6)}px)`,
-          willChange: "transform, opacity, filter",
-        }}
+        style={{ y: heroY, opacity: heroOpacity }}
       >
         <AnimatePresence>
           {showContent && (
@@ -165,23 +139,23 @@ export default function Hero() {
                 {t(PROFILE.title)}
               </motion.p>
 
-              {/* Secondary tagline — typewriter cycling (decorative, not gating anything) */}
+              {/* Secondary tagline — full-line crossfade rotation (decorative, not gating anything) */}
               <div className="min-h-10 flex items-center justify-center mb-6 px-2">
-                <p
-                  className="text-[15px] md:text-[20px] font-normal tracking-wide"
-                  style={{ color: "rgba(29,29,31,0.50)" }}
-                >
-                  {typedText}
-                  <span
-                    className="typing-cursor inline-block ml-0.5"
-                    style={{
-                      width: "2px",
-                      height: "1.1em",
-                      backgroundColor: "#0071E3",
-                      verticalAlign: "text-bottom",
-                    }}
-                  />
-                </p>
+                <AnimatePresence mode="wait">
+                  {nameComplete && (
+                    <motion.p
+                      key={`${lang}-${taglineIndex}`}
+                      initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                      transition={{ duration: 0.5, ease: EASE.smooth }}
+                      className="text-[15px] md:text-[20px] font-normal tracking-wide"
+                      style={{ color: "rgba(29,29,31,0.50)" }}
+                    >
+                      {secondaryTaglines[taglineIndex]}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Key metrics strip — social proof above the fold, editorial stat strip */}
@@ -263,7 +237,7 @@ export default function Hero() {
             </>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </section>
   );
 }

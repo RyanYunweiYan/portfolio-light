@@ -70,12 +70,12 @@ function SocialIcon({
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={isInView ? { opacity: 1, scale: [0, 1.1, 1.0] } : {}}
+      initial={{ opacity: 0, y: 12 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.4,
-        delay: 0.8 + index * 0.1,
-        ease: EASE.bounce,
+        duration: 0.45,
+        delay: 0.6 + index * 0.08,
+        ease: EASE.smooth,
       }}
       className="flex flex-col items-center gap-2 transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
       onMouseEnter={() => setHovered(true)}

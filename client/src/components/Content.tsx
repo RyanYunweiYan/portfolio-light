@@ -241,14 +241,6 @@ export default function ContentSection() {
 
   return (
     <>
-      {/* Gradient transition zone — sits between Projects and Content */}
-      <div
-        className="h-[60px]"
-        style={{
-          background: "linear-gradient(to bottom, #FFFFFF 0%, #161617 100%)",
-        }}
-      />
-
       <section
         id="creative"
         ref={ref}

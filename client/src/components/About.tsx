@@ -213,12 +213,12 @@ export default function About() {
           {skills.map((skill, i) => (
             <motion.span
               key={skill}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={tagsInView ? { opacity: 1, scale: [0, 1.05, 1.0] } : {}}
+              initial={{ opacity: 0, y: 12 }}
+              animate={tagsInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.35,
-                delay: Math.min(i * 0.06, 0.6),
-                ease: EASE.bounce,
+                duration: 0.45,
+                delay: Math.min(i * 0.04, 0.5),
+                ease: EASE.smooth,
               }}
               className="inline-block px-4 py-2 text-[13px] font-medium rounded-full"
               style={{
@@ -383,12 +383,12 @@ export default function About() {
             {CREDENTIALS.certifications.map((cert, i) => (
               <motion.span
                 key={`${lang}-${i}`}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={credsInView ? { opacity: 1, scale: 1 } : {}}
+                initial={{ opacity: 0, y: 12 }}
+                animate={credsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.3,
-                  delay: 0.2 + i * 0.08,
-                  ease: EASE.bounce,
+                  duration: 0.45,
+                  delay: 0.2 + i * 0.06,
+                  ease: EASE.smooth,
                 }}
                 className="inline-block px-4 py-2 text-[13px] font-medium rounded-full"
                 style={{

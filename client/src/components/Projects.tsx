@@ -324,7 +324,7 @@ export default function Projects() {
       id="projects"
       ref={ref}
       className="relative py-20 md:py-36"
-      style={{ backgroundColor: "#FFFFFF" }}
+      style={{ backgroundColor: "transparent" }}
     >
       {/* Apple-style thin line separator */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60px] h-[1px]" style={{ background: "rgba(29,29,31,0.15)" }} />
