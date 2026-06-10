@@ -12,10 +12,11 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { EASE } from "@/const";
 
 export default function Navbar() {
-  const [scrollY, setScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const lastScrollY = useRef(0);
   const { lang, toggleLang, t } = useLanguage();
 
@@ -25,7 +26,8 @@ export default function Navbar() {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
         const y = window.scrollY;
-        setScrollY(y);
+        // Threshold booleans/strings only — React skips re-renders when unchanged
+        setIsScrolled(y > 100);
 
         // Hide on scroll down (past 200px), show on scroll up
         if (y > 200) {
@@ -41,6 +43,14 @@ export default function Navbar() {
           const creativeTop = creativeEl.getBoundingClientRect().top + y;
           setIsDark(y > creativeTop - window.innerHeight * 1.3);
         }
+
+        // Quiet wayfinding: the section currently under the navbar
+        let current = "";
+        for (const link of NAV_LINKS) {
+          const el = document.getElementById(link.href.slice(1));
+          if (el && el.getBoundingClientRect().top <= 160) current = link.href;
+        }
+        setActiveSection(current);
       });
     };
 
@@ -51,8 +61,6 @@ export default function Navbar() {
       cancelAnimationFrame(rafId);
     };
   }, []);
-
-  const isScrolled = scrollY > 100;
 
   return (
     <nav
@@ -88,7 +96,9 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="nav-link relative text-[14px] font-medium tracking-wide transition-opacity duration-200 opacity-60 hover:opacity-100 group"
+              className={`nav-link relative text-[14px] font-medium tracking-wide transition-opacity duration-200 hover:opacity-100 group ${
+                activeSection === link.href ? "opacity-100" : "opacity-60"
+              }`}
               style={{ color: isDark ? "#F5F5F7" : "#1D1D1F" }}
             >
               {t(link.label)}

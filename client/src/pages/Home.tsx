@@ -4,7 +4,7 @@
  * Structure: Hero -> About -> Projects -> [gradient] -> Creative -> AIStack -> Contact -> Footer
  */
 import { lazy, Suspense } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ScrollBackground from "@/components/ScrollBackground";
@@ -20,22 +20,6 @@ const ContentSection = lazy(() => import("@/components/Content"));
 const AIStack = lazy(() => import("@/components/AIStack"));
 const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
-
-function ScrollProgressBar() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] z-[60] origin-left"
-      style={{
-        scaleX,
-        background: "linear-gradient(90deg, rgba(0,113,227,0.85) 0%, #0071E3 100%)",
-        boxShadow: "0 0 8px rgba(0,113,227,0.25)",
-      }}
-    />
-  );
-}
 
 function BackToTop() {
   const { scrollYProgress } = useScroll();
@@ -74,7 +58,6 @@ function BackToTop() {
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <ScrollProgressBar />
       <BackToTop />
       <ScrollBackground />
       <Navbar />
